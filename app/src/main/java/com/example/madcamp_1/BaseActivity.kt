@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.animation.ValueAnimator
 import android.view.MenuItem
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 
-
-import kotlinx.android.synthetic.main.activity_splash.*
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -46,20 +46,26 @@ abstract class BaseActivity : AppCompatActivity() {
                 return@let
 
             mVaActionBar = ValueAnimator.ofInt(mToolbarHeight, 0)
-            mVaActionBar?.addUpdateListener {
-                ValueAnimator.AnimatorUpdateListener { animation ->
-                    mToolbar.layoutParams.height = animation.animatedValue as Int
+            mVaActionBar?.addUpdateListener { animation ->
+                val updateListener = ValueAnimator.AnimatorUpdateListener { animator ->
+                    val value = animator.animatedValue as Int
+                    mToolbar.layoutParams.height = value
                     mToolbar.requestLayout()
                 }
+                updateListener.onAnimationUpdate(animation)
             }
 
-            mVaActionBar?.addUpdateListener {
-                object : AnimatorListenerAdapter() {
-                    override fun onAnimationEnd(animation: Animator?) {
-                        supportActionBar?.hide()
-                    }
+            mVaActionBar?.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    super.onAnimationEnd(animation)
+                    supportActionBar?.hide()
                 }
-            }
+            })
+
+
+
+
+
 
             mVaActionBar!!.duration = mAnimDuration.toLong()
             mVaActionBar?.start()
