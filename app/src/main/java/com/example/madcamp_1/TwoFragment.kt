@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+
 
 class TwoFragment : Fragment() {
 
@@ -23,10 +25,11 @@ class TwoFragment : Fragment() {
         imageRecyclerView = view.findViewById(R.id.imageRecyclerView)
         imageAdapter = ImageAdapter()
 
-        // Set the number of columns in the grid layout
-        val numColumns = 3
-        val layoutManager = GridLayoutManager(context, numColumns)
+        // Set the layout manager with vertical orientation
+        val layoutManager = LinearLayoutManager(context)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         imageRecyclerView.layoutManager = layoutManager
+
         imageRecyclerView.adapter = imageAdapter
 
         // Set the image data to the adapter (you can replace this with your own image data)
