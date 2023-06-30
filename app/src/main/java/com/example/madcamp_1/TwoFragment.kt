@@ -99,5 +99,3 @@ class TwoFragment : Fragment() {
         return view
     }
 }
-
-
