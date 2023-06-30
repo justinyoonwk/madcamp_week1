@@ -23,11 +23,12 @@ class TwoFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_two, container, false)
 
         imageRecyclerView = view.findViewById(R.id.imageRecyclerView)
-        imageAdapter = ImageAdapter()
+        imageAdapter = ImageAdapter { imageResId ->
+            onItemClick(imageResId)
+        }
 
-        // Set the layout manager with vertical orientation
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        // Set the layout manager with grid layout and span count of 2
+        val layoutManager = GridLayoutManager(context, 2)
         imageRecyclerView.layoutManager = layoutManager
 
         imageRecyclerView.adapter = imageAdapter
@@ -42,5 +43,34 @@ class TwoFragment : Fragment() {
         imageAdapter.setImageList(imageList)
 
         return view
+    }
+
+    private fun onItemClick(image: Int) {
+        // Handle item click here
+        // Navigate to the appropriate fragment based on the clicked image
+        when (image) {
+            R.drawable.image1 -> {
+                val fragment = Fragment1()
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
+            R.drawable.image2 -> {
+                val fragment = Fragment2()
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
+            R.drawable.image3 -> {
+                val fragment = Fragment3()
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
+            // Add more cases for other images
+        }
     }
 }
