@@ -124,8 +124,6 @@ class ThreeFragment : Fragment() {
 
 
 
-
-
     private fun getCurrentDate(): String {
         val calendar = Calendar.getInstance()
         val day = calendar.get(Calendar.DAY_OF_MONTH)
