@@ -9,4 +9,9 @@
         android:layout_height="wrap_content"
         android:src="@drawable/popup_default" />
 
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

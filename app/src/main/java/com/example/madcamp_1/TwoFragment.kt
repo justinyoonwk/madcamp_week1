@@ -9,13 +9,21 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.appcompat.app.AlertDialog
 import android.widget.ImageView
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
 
 
-
-class TwoFragment : Fragment() {
+class TwoFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var imageRecyclerView: RecyclerView
     private lateinit var imageAdapter: ImageAdapter
+    private lateinit var googleMap: GoogleMap
+    private var latitude: Double = 0.0
+    private var longitude: Double = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,54 +64,86 @@ class TwoFragment : Fragment() {
                         dialog.dismiss()
                     }
 
-// Inflate custom layout for the dialog
+                // Inflate custom layout for the dialog
                 val dialogView = layoutInflater.inflate(R.layout.popup_image, null)
                 val imageView = dialogView.findViewById<ImageView>(R.id.imageView)
+                val mapView = dialogView.findViewById<MapView>(R.id.mapView)
+
+                // Initialize the MapView
+                mapView.onCreate(savedInstanceState)
+                mapView.getMapAsync(this@TwoFragment) // Set the OnMapReadyCallback
+
                 when (imageResId) {
                     R.drawable.image1 -> {
                         imageView.setImageResource(R.drawable.popup_image1)
+                        latitude = 37.7749  // Location 1 latitude
+                        longitude = -122.4194  // Location 1 longitude
                     }
 
                     R.drawable.image2 -> {
                         imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 2 latitude
+                        longitude = -118.2437  // Location 2 longitude
                     }
 
                     R.drawable.image3 -> {
                         imageView.setImageResource(R.drawable.popup_image3)
+                        latitude = 34.0522  // Location 3 latitude
+                        longitude = -118.2437  // Location 3 longitude
                     }
 
                     R.drawable.image4 -> {
                         imageView.setImageResource(R.drawable.popup_image4)
+                        latitude = 34.0522  // Location 4 latitude
+                        longitude = -118.2437  // Location 4 longitude
                     }
 
                     R.drawable.image5 -> {
-                        imageView.setImageResource(R.drawable.popup_image5)
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 5 latitude
+                        longitude = -118.2437  // Location 5 longitude
                     }
 
                     R.drawable.image6 -> {
-                        imageView.setImageResource(R.drawable.popup_image6)
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 6 latitude
+                        longitude = -118.2437  // Location 6 longitude
                     }
 
                     R.drawable.image7 -> {
-                        imageView.setImageResource(R.drawable.popup_image7)
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 7 latitude
+                        longitude = -118.2437  // Location 7 longitude
                     }
 
                     R.drawable.image8 -> {
-                        imageView.setImageResource(R.drawable.popup_image8)
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 8 latitude
+                        longitude = -118.2437  // Location 8 longitude
                     }
+
+                    // Handle other images or show a default popup
                     else -> {
-                        // Handle other images or show a default popup
-                        // Show popup dialog specific to default
                         imageView.setImageResource(R.drawable.popup_default)
+                        latitude = 0.0  // Default location latitude
+                        longitude = 0.0  // Default location longitude
                     }
                 }
-                dialogBuilder.setView(dialogView)
 
+                dialogBuilder.setView(dialogView)
                 dialogBuilder.create().show()
             }
         })
+
         return view
     }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        this.googleMap = googleMap
+        val markerOptions = MarkerOptions()
+            .position(LatLng(latitude, longitude))
+            .title("Marker Title")
+        googleMap.addMarker(markerOptions)
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(latitude, longitude), 12f))
+    }
 }
-
-
