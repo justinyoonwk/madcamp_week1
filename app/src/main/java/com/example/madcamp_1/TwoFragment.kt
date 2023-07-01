@@ -118,134 +118,134 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     R.drawable.image2 -> {
                         popFoodImageView.setImageResource(R.drawable.pop2_food)
                         popMenuImageView.setImageResource(R.drawable.pop2_menu)
-                        latitude = 34.0522  // Location 2 latitude
-                        longitude = -118.2437  // Location 2 longitude
+                        latitude = 36.363657  // Location 2 latitude
+                        longitude = 127.358960  // Location 2 longitude
                     }
 
                     R.drawable.image3 -> {
                         popFoodImageView.setImageResource(R.drawable.pop3_food)
                         popMenuImageView.setImageResource(R.drawable.pop3_menu)
-                        latitude = 34.0522  // Location 3 latitude
-                        longitude = -118.2437  // Location 3 longitude
+                        latitude = 36.363496  // Location 3 latitude
+                        longitude = 127.358706  // Location 3 longitude
                     }
 
                     R.drawable.image4 -> {
                         popFoodImageView.setImageResource(R.drawable.pop4_food)
                         popMenuImageView.setImageResource(R.drawable.pop4_menu)
-                        latitude = 34.0522  // Location 4 latitude
-                        longitude = -118.2437  // Location 4 longitude
+                        latitude = 36.363423  // Location 4 latitude
+                        longitude = 127.357545  // Location 4 longitude
                     }
 
                     R.drawable.image5 -> {
                         popFoodImageView.setImageResource(R.drawable.pop5_food)
                         popMenuImageView.setImageResource(R.drawable.pop5_menu)
-                        latitude = 34.0522  // Location 5 latitude
-                        longitude = -118.2437  // Location 5 longitude
+                        latitude = 36.362481  // Location 5 latitude
+                        longitude = 127.358189  // Location 5 longitude
                     }
 
                     R.drawable.image6 -> {
                         popFoodImageView.setImageResource(R.drawable.pop6_food)
                         popMenuImageView.setImageResource(R.drawable.pop6_menu)
-                        latitude = 34.0522  // Location 6 latitude
-                        longitude = -118.2437  // Location 6 longitude
+                        latitude = 36.363142  // Location 6 latitude
+                        longitude = 127.358720  // Location 6 longitude
                     }
 
                     R.drawable.image7 -> {
                         popFoodImageView.setImageResource(R.drawable.pop7_food)
                         popMenuImageView.setImageResource(R.drawable.pop7_menu)
-                        latitude = 34.0522  // Location 7 latitude
-                        longitude = -118.2437  // Location 7 longitude
+                        latitude = 36.363557  // Location 7 latitude
+                        longitude = 127.358625  // Location 7 longitude
                     }
 
                     R.drawable.image8 -> {
                         popFoodImageView.setImageResource(R.drawable.pop8_food)
                         popMenuImageView.setImageResource(R.drawable.pop8_menu)
-                        latitude = 34.0522  // Location 8 latitude
-                        longitude = -118.2437  // Location 8 longitude
+                        latitude = 36.363037  // Location 8 latitude
+                        longitude = 127.357801  // Location 8 longitude
                     }
 
                     R.drawable.image9 -> {
                         popFoodImageView.setImageResource(R.drawable.pop9_food)
                         popMenuImageView.setImageResource(R.drawable.pop9_menu)
-                        latitude = 34.0522  // Location 8 latitude
-                        longitude = -118.2437  // Location 8 longitude
+                        latitude = 36.363325  // Location 9 latitude
+                        longitude = 127.359104  // Location 9 longitude
                     }
 
                     R.drawable.image10 -> {
                         popFoodImageView.setImageResource(R.drawable.pop10_food)
                         popMenuImageView.setImageResource(R.drawable.pop10_menu)
-                        latitude = 34.0522  // Location 8 latitude
-                        longitude = -118.2437  // Location 8 longitude
+                        latitude =  36.362434 // Location 10 latitude
+                        longitude = 127.358119  // Location 10 longitude
                     }
 
                     R.drawable.image11 -> {
                         popFoodImageView.setImageResource(R.drawable.pop11_food)
                         popMenuImageView.setImageResource(R.drawable.pop11_menu)
-                        latitude = 34.0522  // Location 8 latitude
-                        longitude = -118.2437  // Location 8 longitude
+                        latitude = 36.363507  // Location 11 latitude
+                        longitude = 127.358159  // Location 11 longitude
                     }
 
                     R.drawable.image12 -> {
                         popFoodImageView.setImageResource(R.drawable.pop12_food)
                         popMenuImageView.setImageResource(R.drawable.pop12_menu)
-                        latitude = 34.0522  // Location 8 latitude
-                        longitude = -118.2437  // Location 8 longitude
+                        latitude = 36.352701  // Location 12 latitude
+                        longitude = 127.372166  // Location 12 longitude
                     }
 
                     R.drawable.image13 -> {
                         popFoodImageView.setImageResource(R.drawable.pop13_food)
                         popMenuImageView.setImageResource(R.drawable.pop13_menu)
-                        latitude = 34.0522  // Location 8 latitude
-                        longitude = -118.2437  // Location 8 longitude
+                        latitude = 36.352612  // Location 13 latitude
+                        longitude = 127.373712  // Location 13 longitude
                     }
 
                     R.drawable.image14 -> {
                         popFoodImageView.setImageResource(R.drawable.pop14_food)
                         popMenuImageView.setImageResource(R.drawable.pop14_menu)
-                        latitude = 34.0522  // Location 8 latitude
-                        longitude = -118.2437  // Location 8 longitude
+                        latitude = 36.357402  // Location 14 latitude
+                        longitude = 127.350244  // Location 14 longitude
                     }
 
                     R.drawable.image15 -> {
                         popFoodImageView.setImageResource(R.drawable.pop15_food)
                         popMenuImageView.setImageResource(R.drawable.pop15_menu)
-                        latitude = 34.0522  // Location 8 latitude
-                        longitude = -118.2437  // Location 8 longitude
+                        latitude = 36.356487  // Location 15 latitude
+                        longitude = 127.338124  // Location 15 longitude
                     }
 
                     R.drawable.image16 -> {
                         popFoodImageView.setImageResource(R.drawable.pop16_food)
                         popMenuImageView.setImageResource(R.drawable.pop16_menu)
-                        latitude = 34.0522  // Location 8 latitude
-                        longitude = -118.2437  // Location 8 longitude
+                        latitude = 36.352596  // Location 16 latitude
+                        longitude = 127.373417  // Location 16 longitude
                     }
 
                     R.drawable.image17 -> {
                         popFoodImageView.setImageResource(R.drawable.pop17_food)
                         popMenuImageView.setImageResource(R.drawable.pop17_menu)
-                        latitude = 34.0522  // Location 8 latitude
-                        longitude = -118.2437  // Location 8 longitude
+                        latitude = 36.359874  // Location 17 latitude
+                        longitude = 127.349795  // Location 17 longitude
                     }
 
                     R.drawable.image18 -> {
                         popFoodImageView.setImageResource(R.drawable.pop18_food)
                         popMenuImageView.setImageResource(R.drawable.pop18_menu)
-                        latitude = 34.0522  // Location 8 latitude
-                        longitude = -118.2437  // Location 8 longitude
+                        latitude = 36.362025  // Location 18 latitude
+                        longitude = 127.353429  // Location 18 longitude
                     }
 
                     R.drawable.image19 -> {
                         popFoodImageView.setImageResource(R.drawable.pop19_food)
                         popMenuImageView.setImageResource(R.drawable.pop19_menu)
-                        latitude = 34.0522  // Location 8 latitude
-                        longitude = -118.2437  // Location 8 longitude
+                        latitude = 36.363032  // Location 19 latitude
+                        longitude = 127.358227  // Location 19 longitude
                     }
 
                     R.drawable.image20 -> {
                         popFoodImageView.setImageResource(R.drawable.pop20_food)
                         popMenuImageView.setImageResource(R.drawable.pop20_menu)
-                        latitude = 34.0522  // Location 8 latitude
-                        longitude = -118.2437  // Location 8 longitude
+                        latitude = 36.359423  // Location 20 latitude
+                        longitude = 127.344466  // Location 20 longitude
                     }
 
                     // Handle other images or show a default popup
