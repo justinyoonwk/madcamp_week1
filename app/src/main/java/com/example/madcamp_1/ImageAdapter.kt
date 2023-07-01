@@ -1,10 +1,13 @@
 package com.example.madcamp_1
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+
 
 class ImageAdapter(private val onItemClick: (Int) -> Unit) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
@@ -49,6 +52,7 @@ class ImageAdapter(private val onItemClick: (Int) -> Unit) : RecyclerView.Adapte
         }
 
         fun bind(imageResId: Int) {
+            adjustImageSize(imageResId)
             imageView.setImageResource(imageResId)
 
             itemView.setOnClickListener {
@@ -58,6 +62,24 @@ class ImageAdapter(private val onItemClick: (Int) -> Unit) : RecyclerView.Adapte
                     onImageClickListener?.onImageClick(imageResId)
                 }
             }
+        }
+
+        private fun adjustImageSize(imageResId: Int) {
+            val options = BitmapFactory.Options()
+            options.inJustDecodeBounds = true
+            BitmapFactory.decodeResource(itemView.resources, imageResId, options)
+            val imageWidth = options.outWidth
+            val imageHeight = options.outHeight
+
+            val layoutParams = imageView.layoutParams as GridLayoutManager.LayoutParams
+            val spanCount = (itemView.context.resources.displayMetrics.widthPixels / itemView.context.resources.displayMetrics.density / 180).toInt() // 이미지 너비가 180dp라고 가
+            val spacing = (itemView.context.resources.displayMetrics.widthPixels / spanCount - itemView.context.resources.getDimensionPixelSize(R.dimen.image_width)) / (spanCount - 1)
+            layoutParams.width = itemView.context.resources.getDimensionPixelSize(R.dimen.image_width)
+            layoutParams.height = (layoutParams.width * imageHeight / imageWidth)
+            layoutParams.rightMargin = if ((adapterPosition + 1) % spanCount == 0) 0 else spacing
+            layoutParams.bottomMargin = spacing
+            imageView.layoutParams = layoutParams
+            imageView.scaleType = ImageView.ScaleType.CENTER_CROP
         }
     }
 
