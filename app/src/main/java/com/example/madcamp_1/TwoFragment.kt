@@ -15,7 +15,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 
 class TwoFragment : Fragment(), OnMapReadyCallback {
 
@@ -65,9 +66,18 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                 // Inflate custom layout for the dialog
-                val dialogView = layoutInflater.inflate(R.layout.popup_image, null)
+                val dialogView = layoutInflater.inflate(R.layout.popup_image, null) as LinearLayout
                 val imageView = dialogView.findViewById<ImageView>(R.id.imageView)
                 val mapView = dialogView.findViewById<MapView>(R.id.mapView)
+
+                val layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    0,
+                    1.0f
+                )
+                imageView.layoutParams = layoutParams
+                mapView.layoutParams = layoutParams
+
 
                 // Initialize the MapView
                 mapView.onCreate(savedInstanceState)
@@ -130,7 +140,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
                 }
 
-                dialogBuilder.setView(dialogView)
+                dialogBuilder.setView(dialogView as View)
                 dialogBuilder.create().show()
             }
         })
