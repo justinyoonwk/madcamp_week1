@@ -16,7 +16,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
+import android.graphics.BitmapFactory
 
 class TwoFragment : Fragment(), OnMapReadyCallback {
 
@@ -53,6 +53,18 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
             R.drawable.image6,
             R.drawable.image7,
             R.drawable.image8,
+            R.drawable.image9,
+            R.drawable.image10,
+            R.drawable.image11,
+            R.drawable.image12,
+            R.drawable.image13,
+            R.drawable.image14,
+            R.drawable.image15,
+            R.drawable.image16,
+            R.drawable.image17,
+            R.drawable.image18,
+            R.drawable.image19,
+            R.drawable.image20,
             // Add more image resource IDs here
         )
 
@@ -65,18 +77,26 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                         dialog.dismiss()
                     }
 
-                // Inflate custom layout for the dialog
                 val dialogView = layoutInflater.inflate(R.layout.popup_image, null) as LinearLayout
                 val imageView = dialogView.findViewById<ImageView>(R.id.imageView)
                 val mapView = dialogView.findViewById<MapView>(R.id.mapView)
 
-                val layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    0,
-                    1.0f
-                )
-                imageView.layoutParams = layoutParams
-                mapView.layoutParams = layoutParams
+                // Calculate the aspect ratio of the image
+                val options = BitmapFactory.Options()
+                options.inJustDecodeBounds = true
+                BitmapFactory.decodeResource(resources, imageResId, options)
+                val imageWidth = options.outWidth
+                val imageHeight = options.outHeight
+                val aspectRatio = imageWidth.toFloat() / imageHeight
+
+                // Calculate the desired height based on the width of the dialog
+                val dialogWidth = resources.displayMetrics.widthPixels
+                val desiredHeight = (dialogWidth / 2) / aspectRatio
+
+                // Set the layout parameters of the ImageView and MapView
+                val imageLayoutParams = LinearLayout.LayoutParams(dialogWidth / 2, desiredHeight.toInt())
+                imageView.layoutParams = imageLayoutParams
+                mapView.layoutParams = imageLayoutParams
 
 
                 // Initialize the MapView
@@ -127,6 +147,78 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image8 -> {
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 8 latitude
+                        longitude = -118.2437  // Location 8 longitude
+                    }
+
+                    R.drawable.image9 -> {
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 8 latitude
+                        longitude = -118.2437  // Location 8 longitude
+                    }
+
+                    R.drawable.image10 -> {
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 8 latitude
+                        longitude = -118.2437  // Location 8 longitude
+                    }
+
+                    R.drawable.image11 -> {
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 8 latitude
+                        longitude = -118.2437  // Location 8 longitude
+                    }
+
+                    R.drawable.image12 -> {
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 8 latitude
+                        longitude = -118.2437  // Location 8 longitude
+                    }
+
+                    R.drawable.image13 -> {
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 8 latitude
+                        longitude = -118.2437  // Location 8 longitude
+                    }
+
+                    R.drawable.image14 -> {
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 8 latitude
+                        longitude = -118.2437  // Location 8 longitude
+                    }
+
+                    R.drawable.image15 -> {
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 8 latitude
+                        longitude = -118.2437  // Location 8 longitude
+                    }
+
+                    R.drawable.image16 -> {
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 8 latitude
+                        longitude = -118.2437  // Location 8 longitude
+                    }
+
+                    R.drawable.image17 -> {
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 8 latitude
+                        longitude = -118.2437  // Location 8 longitude
+                    }
+
+                    R.drawable.image18 -> {
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 8 latitude
+                        longitude = -118.2437  // Location 8 longitude
+                    }
+
+                    R.drawable.image19 -> {
+                        imageView.setImageResource(R.drawable.popup_image2)
+                        latitude = 34.0522  // Location 8 latitude
+                        longitude = -118.2437  // Location 8 longitude
+                    }
+
+                    R.drawable.image20 -> {
                         imageView.setImageResource(R.drawable.popup_image2)
                         latitude = 34.0522  // Location 8 latitude
                         longitude = -118.2437  // Location 8 longitude
