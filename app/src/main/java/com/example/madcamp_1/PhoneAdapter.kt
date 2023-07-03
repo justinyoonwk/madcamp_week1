@@ -15,7 +15,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
@@ -66,23 +65,6 @@ public class PhoneAdapter(var itemList: ArrayList<Phone>): RecyclerView.Adapter<
         holder.phone_Number.text = itemList[position].phone_Number
         val photo_item: String = itemList[position].photo
 
-        fun getImageFilePathFromGallery(uri: Uri): String {
-            val context = holder.itemView.context
-            val projection = arrayOf(MediaStore.Images.Media.DISPLAY_NAME)
-            val cursor = context.contentResolver.query(uri, projection, null, null, null)
-            cursor?.use {
-                if (it.moveToFirst()) {
-                    val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)
-                    val fileName = it.getString(columnIndex)
-                    val filePath = "${Environment.getExternalStorageDirectory()}/$fileName"
-                    return filePath
-                }
-            }
-            return ""
-        }
-
-        //uri = photo_item!!.toUri()
-        //val scheme=uri.scheme
 
         fun isGalleryImage2(filePath: String): Boolean {
             return filePath.startsWith(Environment.getExternalStorageDirectory().path)

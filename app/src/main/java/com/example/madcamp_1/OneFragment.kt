@@ -4,6 +4,7 @@ package com.example.madcamp_1
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.ContentResolver
 import android.content.ContentUris
 import android.content.Context
@@ -23,6 +24,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
@@ -61,7 +63,9 @@ val PERMISSION_REQUEST_CODE = 123
 class OneFragment : Fragment() {
 
     private lateinit var dialogImageView: ImageView
+    private lateinit var dialogPhoto:ImageView
     private lateinit var loadImage: ActivityResultLauncher<String>
+    private lateinit var loadImage2: ActivityResultLauncher<String>
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -78,13 +82,21 @@ class OneFragment : Fragment() {
         loadImage =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
-
-                filePath=getImageFilePathFromGallery(uri)
+                filePath = getImageFilePathFromGallery(uri)
                 Glide.with(requireContext())
                     .load(uri) // 이미지 URl
                     .into(dialogImageView) // 이미지를 표시할 ImageView
             }
         }
+        loadImage2 =
+            registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+                uri?.let {
+                    filePath=getImageFilePathFromGallery(uri)
+                    Glide.with(requireContext())
+                        .load(uri) // 이미지 URl
+                        .into(dialogPhoto) // 이미지를 표시할 ImageView
+                }
+            }
 
     }
 
@@ -98,8 +110,8 @@ class OneFragment : Fragment() {
         val itemList = ArrayList<Phone>()
 
         // json parsing
-        val assetManager:AssetManager = requireContext().resources.assets
-        val inputStream= assetManager.open("data.json")
+        val assetManager: AssetManager = requireContext().resources.assets
+        val inputStream = assetManager.open("data.json")
         val jsonString = inputStream.bufferedReader().use { it.readText() }
 
         val jObject = JSONObject(jsonString)
@@ -108,14 +120,14 @@ class OneFragment : Fragment() {
         for (index in 0 until jArray.length()) {
             val jsonObject = jArray.getJSONObject(index)
 
-        val Data = Phone(
-             jsonObject.getString("name"),
-             jsonObject.getString("phone_Number"),
-             jsonObject.getString("fav_Food"),
-             jsonObject.getString("dis_Food"),
-             jsonObject.getString("address"),
-            jsonObject.getString("photo")
-        )
+            val Data = Phone(
+                jsonObject.getString("name"),
+                jsonObject.getString("phone_Number"),
+                jsonObject.getString("fav_Food"),
+                jsonObject.getString("dis_Food"),
+                jsonObject.getString("address"),
+                jsonObject.getString("photo")
+            )
             itemList.add(Data)
         }
 
@@ -123,7 +135,8 @@ class OneFragment : Fragment() {
         val phoneAdapter = PhoneAdapter(itemList)
 
 // 리사이클러뷰 리스트 클릭 시 추가 정보 다이얼로그
-        phoneAdapter.itemClickListener = object: PhoneAdapter.onItemClickListener {
+
+        phoneAdapter.itemClickListener = object : PhoneAdapter.onItemClickListener {
             override fun onItemClick(position: Int) {
 
                 val builder = AlertDialog.Builder(v.context)
@@ -144,12 +157,7 @@ class OneFragment : Fragment() {
 
                 val photo_item: String = itemList[position].photo // 리소스 식별자
 
-                dialogImageView = dialogView.findViewById<ImageView>(R.id.imageView)
-/*
-                val resourceName = photo_item?.substringAfterLast(".")
-                val resourceId: Int = requireContext().resources.getIdentifier(resourceName, "drawable", requireContext().packageName)
-                dialogImageView.setImageResource(resourceId)
-*/
+                dialogPhoto = dialogView.findViewById<ImageView>(R.id.imageView)
 
 
                 fun isGalleryImage2(filePath: String): Boolean {
@@ -157,79 +165,68 @@ class OneFragment : Fragment() {
                 }
 
 
-                fun filePathToUri(filePath: String): Uri {
-                    return Uri.fromFile(File(filePath))
-                }
-/*
-                val uri: Uri = if (photo_item?.startsWith("R.drawable") == true) {
+                if (isGalleryImage2(photo_item)) {
+                    // 갤러리에서 가져온 이미지인 경우 처리
+
+                    Glide.with(requireContext())
+                        .load(File(photo_item))
+                        .into(dialogPhoto)
+
+                } else {
+                    // Drawable에 있는 파일인 경우 처리
+
                     val resourceName = photo_item.substringAfterLast(".")
                     val resourceId: Int = requireContext().resources.getIdentifier(
                         resourceName,
                         "drawable",
                         requireContext().packageName
                     )
-                    Uri.parse("android.resource://${ requireContext().packageName}/$resourceId")
-                } else {
-                    filePathToUri(photo_item)
-                }*/
-                /*
-                val isGalleryImage = isGalleryImage(uri)
-                val isDrawableImage = isDrawableImage(uri)
-*/
-                if (isGalleryImage2(photo_item)) {
-                    // 갤러리에서 가져온 이미지인 경우 처리
-
-                    Glide.with(requireContext())
-                        .load(File(photo_item))
-                        .into(dialogImageView)
-
-                } else {
-                    // Drawable에 있는 파일인 경우 처리
-//Success
-                    val resourceName = photo_item.substringAfterLast(".")
-                    val resourceId: Int = requireContext().resources.getIdentifier(resourceName, "drawable",requireContext().packageName)
-                    dialogImageView.setImageResource(resourceId)
+                    dialogPhoto.setImageResource(resourceId)
                 }
 
                 //For contact with gallery app
-                dialogImageView.setOnClickListener{
-                    loadImage.launch("image/*")
+                dialogPhoto.setOnClickListener {
+                    loadImage2.launch("image/*")
+                    Toast.makeText(requireContext(), "성공?", Toast.LENGTH_LONG).show()
 
                 }
-                Toast.makeText(requireContext(),"$photo_item",Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "$photo_item", Toast.LENGTH_LONG).show()
                 phoneAdapter.notifyDataSetChanged()
 
                 val dialogAddress = dialogView.findViewById<EditText>(R.id.address)
                 dialogAddress.setText(itemList[position].address)
                 builder.setView(dialogView)
                     .setPositiveButton("수정") { dialogInterface, i ->
-                        itemList[position].name=dialogName.text.toString()
-                        itemList[position].phone_Number=dialogPhone.text.toString()
-                        itemList[position].fav_Food=dialogFavFood.text.toString()
+                        itemList[position].name = dialogName.text.toString()
+                        itemList[position].phone_Number = dialogPhone.text.toString()
+                        itemList[position].fav_Food = dialogFavFood.text.toString()
                         itemList[position].dis_Food = dialogDisFood.text.toString()
-                        itemList[position].address=dialogAddress.text.toString()
-                        itemList[position].photo=filePath
+                        itemList[position].address = dialogAddress.text.toString()
+                        itemList[position].photo = filePath
                         phoneAdapter.notifyDataSetChanged()
 
                     }
                     .setNegativeButton("삭제") { dialogInterface, i ->
                         // 취소 버튼 클릭 시 수행할 작업
-
+                        itemList.removeAt(position)
+                        phoneAdapter.notifyDataSetChanged()
                     }
                     .show()
             }
 
         }
 
+
+
 // 연락처 추가 버튼
         val add_btn = v.findViewById<FloatingActionButton>(R.id.add_btn)
 
-
         add_btn.setOnClickListener{
         val builder = AlertDialog.Builder(context)
-        val DialogView = layoutInflater.inflate(R.layout.custom_dialog, null)
+            val DialogView =
+                LayoutInflater.from(v.context).inflate(R.layout.custom_dialog, null)
 
-        builder.setView(DialogView)
+            builder.setView(DialogView)
             .setPositiveButton("확인") { dialogInterface, i ->
                 val dialogName = DialogView.findViewById<EditText>(R.id.name).text.toString()
                 val dialogPhone =
@@ -237,22 +234,39 @@ class OneFragment : Fragment() {
                 val dialogFavFood = DialogView.findViewById<EditText>(R.id.fav_Food).text.toString()
                 val dialogDisFood = DialogView.findViewById<EditText>(R.id.dis_Food).text.toString()
                 val dialogAddress = DialogView.findViewById<EditText>(R.id.address).text.toString()
-                val dialogPhoto = DialogView.findViewById<ImageView>(R.id.img_load)
+                dialogImageView = DialogView.findViewById(R.id.image1)
+                val dialogImage: String=filePath
+                dialogImageView.isClickable = true
 
-                val dialogFile = filePath
-                val new_uri = filePath!!.toUri()
-
-                Glide.with(requireContext())
-                    .load(new_uri)
-                    .into(dialogPhoto)
-
-                //For contact with gallery app
-                dialogPhoto.setOnClickListener{
-                    loadImage.launch("image/*")
-
+                fun isGalleryImage2(filePath: String): Boolean {
+                    return filePath.startsWith(Environment.getExternalStorageDirectory().path)
                 }
 
+                if (isGalleryImage2(dialogImage)) {
+                    // 갤러리에서 가져온 이미지인 경우 처리
+                    Glide.with(v.context)
+                        .load(File(dialogImage))
+                        .into(dialogImageView)
 
+                } else {
+                    // Drawable에 있는 파일인 경우 처리
+                    val resourceName = dialogImage.substringAfterLast(".")
+                    val resourceId: Int = v.context.resources.getIdentifier(resourceName, "drawable",requireContext().packageName)
+                    dialogImageView.setImageResource(resourceId)
+                }
+
+                //갤러리 접근
+                dialogImageView.setOnClickListener {
+                    Toast.makeText(v.context,"성공?",Toast.LENGTH_LONG).show()
+                    loadImage.launch("image/*")
+                }
+
+                val btn = DialogView.findViewById<ImageButton>(R.id.btn)
+                btn.setOnClickListener{
+                    Toast.makeText(v.context,"hi",Toast.LENGTH_SHORT).show()
+                }
+
+                //갱신 처리
                 phoneAdapter.notifyDataSetChanged()
 
                 phoneAdapter.addItem(
@@ -262,58 +276,24 @@ class OneFragment : Fragment() {
                         dialogFavFood,
                         dialogDisFood,
                         dialogAddress,
-                        dialogFile
+                        dialogImage
                     )
                 )
-
-
             }
             .setNegativeButton("취소") { dialogInterface, i ->
-                /* 취소일 때 아무 액션이 없으므로 빈칸 */
+                // 취소일 때 아무 액션이 없으므로 빈칸
             }
             .show()
     }
-
             val layoutManager = LinearLayoutManager(context)
             layoutManager.orientation = LinearLayoutManager.VERTICAL
             rv.layoutManager = layoutManager
-
             rv.adapter = phoneAdapter
-
             return v
 
-
-
     }
-    fun getImageFilePath3(uri: Uri): String {
-        val context = requireContext()
-        val contentResolver = context.contentResolver
 
-        val projection = arrayOf(MediaStore.Images.Media._ID, MediaStore.Images.Media.DISPLAY_NAME)
-        val cursor = contentResolver.query(uri, projection, null, null, null)
-        cursor?.use {
-            if (it.moveToFirst()) {
-                val idColumnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
-                val nameColumnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)
-
-                val imageId = it.getLong(idColumnIndex)
-                val imageName = it.getString(nameColumnIndex)
-
-                val inputStream = contentResolver.openInputStream(uri)
-                val imageFile = File(context.filesDir, imageName)
-
-                inputStream?.use { input ->
-                    FileOutputStream(imageFile).use { output ->
-                        input.copyTo(output)
-                    }
-                }
-
-                return imageFile.absolutePath
-            }
-        }
-
-        return ""
-    }
+    //갤러리 이미지 경로를 찾아오는 코드
     fun getImageFilePathFromGallery(uri: Uri): String {
         val context = requireContext()
         val projection = arrayOf(MediaStore.Images.Media.DISPLAY_NAME)
@@ -322,53 +302,14 @@ class OneFragment : Fragment() {
             if (it.moveToFirst()) {
                 val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)
                 val fileName = it.getString(columnIndex)
-                val filePath = "${Environment.getExternalStorageDirectory()}/$fileName"
+                val one = requireContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.getAbsolutePath();
+                val filePath = "/storage/emulated/0/Download/$fileName"
+
                 return filePath
             }
         }
         return ""
     }
-
-
-    fun getImageFilePath(uri: Uri):String {
-        // if (uri.scheme == "content") { //In Gallery
-        val context = requireContext()
-        val contentResolver = context.contentResolver
-
-        // Create file path inside app's data dir
-       // val filePath = (context.applicationInfo.dataDir + File.separator
-         //       + System.currentTimeMillis())
-
-        val file = File(filePath)
-
-        return file.getAbsolutePath()
-        }
-
-
-    fun uriToPath(context: Context, contentUri: Uri): String {
-        val proj = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor = context.contentResolver.query(contentUri, proj, null, null, null)
-        cursor?.use {
-            it.moveToNext()
-            val path = it.getString(it.getColumnIndex(MediaStore.MediaColumns.DATA))
-
-            return path
-        }
-        return ""
-    }
-
-    fun getImageFilePath2(uri: Uri): String {
-        val projection = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor = requireContext().contentResolver.query(uri, projection, null, null, null)
-        cursor?.use {
-            if (it.moveToFirst()) {
-                val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-                return it.getString(columnIndex)
-            }
-        }
-        return ""
-    }
-
 
 
     companion object {

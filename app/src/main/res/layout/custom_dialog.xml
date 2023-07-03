@@ -3,12 +3,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient">
+    android:background="@drawable/bg_gradient"
+    android:clickable="true"
+    >
 
     <ImageView
+        android:clickable="true"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:id="@+id/img_load"
+        android:id="@+id/image1"
         android:src="@drawable/image1"
         android:layout_width="264dp"
         android:layout_height="264dp"
@@ -29,6 +32,7 @@
 
             >
             <ImageButton
+                android:id="@+id/btn"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/person"
