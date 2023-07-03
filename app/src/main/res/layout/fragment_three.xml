@@ -18,7 +18,9 @@
     <ListView
         android:id="@+id/eventListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+    </ListView>
 
 
     <!-- Add any other UI elements for adding events if needed -->

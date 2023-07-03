@@ -3,20 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OneFragment">
+    tools:context=".OneFragment"
+
+    >
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        tools:listitem = "@layout/item_recyclerview"/>
 
-    <Button
+        tools:listitem = "@layout/item_recyclerview"
+
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:src="@drawable/person"
         android:id="@+id/add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
-
+        android:text="Button"
+    android:layout_gravity="end|bottom"
+    android:layout_margin="16dp"/>
 </FrameLayout>
