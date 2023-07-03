@@ -46,11 +46,10 @@ class MainActivity : BaseActivity() {
             return when (position) {
                 0 -> OneFragment()
                 1 -> TwoFragment()
-                2 -> ThreeFragment()
-                else -> TestFragment()
+                else -> ThreeFragment()
             }
         }
 
-        override fun getCount(): Int = 4
+        override fun getCount(): Int = 3
     }
 }
