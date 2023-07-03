@@ -24,9 +24,9 @@ class MainActivity : BaseActivity() {
         val tabLayout = findViewById<TabLayout>(R.id.tabs)
         tabLayout.setupWithViewPager(mViewPager)
 
-        tabLayout.getTabAt(0)?.text = "Tab1"
-        tabLayout.getTabAt(1)?.text = "Tab2"
-        tabLayout.getTabAt(2)?.text = "Tab3"
+        tabLayout.getTabAt(0)?.text = "People"
+        tabLayout.getTabAt(1)?.text = "Restaurant"
+        tabLayout.getTabAt(2)?.text = "Schedule"
 
         mViewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
