@@ -1,29 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="100dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+
+
+    >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
-        android:background="#E3D2DD"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:elevation="50dp"
+        android:background="@drawable/bg_gradient"
         android:orientation="horizontal">
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="name"
-            android:textSize="32sp"
-            android:layout_gravity="center"
-            android:layout_marginStart="30dp"/>
-        <TextView
-            android:id="@+id/phone_Number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="phone"
-            android:textSize="32sp"
-            android:layout_gravity="center"
-            android:layout_marginStart="18dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userImg"
+            android:layout_width="77dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="5dp"
+                android:text="name"
+                android:textColor="@color/white"
+                android:textSize="27sp"
+                android:textStyle="bold"
+
+                />
+
+            <TextView
+                android:id="@+id/phone_Number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="phone"
+                android:textColor="#BFBDBD"
+                android:textSize="12sp"
+
+                />
+        </LinearLayout>
 
 
     </LinearLayout>
