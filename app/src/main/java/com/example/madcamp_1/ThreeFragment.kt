@@ -291,9 +291,14 @@ class ThreeFragment : Fragment() {
                             val index = events.indexOf(selectedItem2) // 현재 값을 가진 요소의 인덱스 찾기
 
                             if (index != -1) {
-                                events.removeAt(index)
-                                val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, events)
-                                adapter.notifyDataSetChanged()
+
+                                selectedItem3=selectedItem2.substring(6,selectedItem2.indexOf(","))
+                                events = getEventsForDate(selectedItem3)
+
+                                events.remove(selectedItem2)
+
+                                var adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, events)
+                                eventListView.adapter = adapter
                             } else {
                                 // 해당 요소가 리스트에 없는 경우에 대한 처리
                                 Toast.makeText(requireContext(), "해당 요소를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()

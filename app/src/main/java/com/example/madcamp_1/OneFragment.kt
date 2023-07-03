@@ -238,21 +238,32 @@ class OneFragment : Fragment() {
                 val dialogDisFood = DialogView.findViewById<EditText>(R.id.dis_Food).text.toString()
                 val dialogAddress = DialogView.findViewById<EditText>(R.id.address).text.toString()
                 val dialogPhoto = DialogView.findViewById<ImageView>(R.id.img_load)
+                val dialogImage: String=filePath
 
-                val dialogFile = filePath
-                val new_uri = filePath!!.toUri()
+                fun isGalleryImage2(filePath: String): Boolean {
+                    return filePath.startsWith(Environment.getExternalStorageDirectory().path)
+                }
 
-                Glide.with(requireContext())
-                    .load(new_uri)
-                    .into(dialogPhoto)
 
-                //For contact with gallery app
+                if (isGalleryImage2(dialogImage)) {
+                    // 갤러리에서 가져온 이미지인 경우 처리
+                    Glide.with(requireContext())
+                        .load(File(dialogImage))
+                        .into(dialogPhoto)
+
+                } else {
+                    // Drawable에 있는 파일인 경우 처리
+                    val resourceName = dialogImage.substringAfterLast(".")
+                    val resourceId: Int = requireContext().resources.getIdentifier(resourceName, "drawable",requireContext().packageName)
+                    dialogPhoto.setImageResource(resourceId)
+                }
+
+                //갤러리 접근
                 dialogPhoto.setOnClickListener{
                     loadImage.launch("image/*")
 
                 }
-
-
+                //갱신 처리
                 phoneAdapter.notifyDataSetChanged()
 
                 phoneAdapter.addItem(
@@ -262,14 +273,14 @@ class OneFragment : Fragment() {
                         dialogFavFood,
                         dialogDisFood,
                         dialogAddress,
-                        dialogFile
+                        dialogImage
                     )
                 )
 
 
             }
             .setNegativeButton("취소") { dialogInterface, i ->
-                /* 취소일 때 아무 액션이 없으므로 빈칸 */
+                // 취소일 때 아무 액션이 없으므로 빈칸
             }
             .show()
     }
@@ -285,35 +296,8 @@ class OneFragment : Fragment() {
 
 
     }
-    fun getImageFilePath3(uri: Uri): String {
-        val context = requireContext()
-        val contentResolver = context.contentResolver
 
-        val projection = arrayOf(MediaStore.Images.Media._ID, MediaStore.Images.Media.DISPLAY_NAME)
-        val cursor = contentResolver.query(uri, projection, null, null, null)
-        cursor?.use {
-            if (it.moveToFirst()) {
-                val idColumnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
-                val nameColumnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)
-
-                val imageId = it.getLong(idColumnIndex)
-                val imageName = it.getString(nameColumnIndex)
-
-                val inputStream = contentResolver.openInputStream(uri)
-                val imageFile = File(context.filesDir, imageName)
-
-                inputStream?.use { input ->
-                    FileOutputStream(imageFile).use { output ->
-                        input.copyTo(output)
-                    }
-                }
-
-                return imageFile.absolutePath
-            }
-        }
-
-        return ""
-    }
+    //갤러리 이미지 경로를 찾아오는 코드
     fun getImageFilePathFromGallery(uri: Uri): String {
         val context = requireContext()
         val projection = arrayOf(MediaStore.Images.Media.DISPLAY_NAME)
@@ -322,53 +306,15 @@ class OneFragment : Fragment() {
             if (it.moveToFirst()) {
                 val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)
                 val fileName = it.getString(columnIndex)
-                val filePath = "${Environment.getExternalStorageDirectory()}/$fileName"
+                val one = requireContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.getAbsolutePath();
+                val filePath = "/storage/emulated/0/Download/$fileName"
+
+
                 return filePath
             }
         }
         return ""
     }
-
-
-    fun getImageFilePath(uri: Uri):String {
-        // if (uri.scheme == "content") { //In Gallery
-        val context = requireContext()
-        val contentResolver = context.contentResolver
-
-        // Create file path inside app's data dir
-       // val filePath = (context.applicationInfo.dataDir + File.separator
-         //       + System.currentTimeMillis())
-
-        val file = File(filePath)
-
-        return file.getAbsolutePath()
-        }
-
-
-    fun uriToPath(context: Context, contentUri: Uri): String {
-        val proj = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor = context.contentResolver.query(contentUri, proj, null, null, null)
-        cursor?.use {
-            it.moveToNext()
-            val path = it.getString(it.getColumnIndex(MediaStore.MediaColumns.DATA))
-
-            return path
-        }
-        return ""
-    }
-
-    fun getImageFilePath2(uri: Uri): String {
-        val projection = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor = requireContext().contentResolver.query(uri, projection, null, null, null)
-        cursor?.use {
-            if (it.moveToFirst()) {
-                val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-                return it.getString(columnIndex)
-            }
-        }
-        return ""
-    }
-
 
 
     companion object {
