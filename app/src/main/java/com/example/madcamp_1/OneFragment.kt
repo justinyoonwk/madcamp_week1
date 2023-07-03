@@ -13,6 +13,7 @@ import android.content.res.AssetManager
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 
@@ -78,7 +79,7 @@ class OneFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
 
-                filePath=uriToPath(requireContext(),uri)
+                filePath=getImageFilePathFromGallery(uri)
                 Glide.with(requireContext())
                     .load(uri) // 이미지 URl
                     .into(dialogImageView) // 이미지를 표시할 ImageView
@@ -151,14 +152,15 @@ class OneFragment : Fragment() {
 */
 
 
-                fun isGalleryImage(uri: Uri): Boolean {
-                    return uri.scheme == "content"
+                fun isGalleryImage2(filePath: String): Boolean {
+                    return filePath.startsWith(Environment.getExternalStorageDirectory().path)
                 }
 
-                fun isDrawableImage(uri: Uri): Boolean {
-                    return uri.scheme == "android.resource"
-                }
 
+                fun filePathToUri(filePath: String): Uri {
+                    return Uri.fromFile(File(filePath))
+                }
+/*
                 val uri: Uri = if (photo_item?.startsWith("R.drawable") == true) {
                     val resourceName = photo_item.substringAfterLast(".")
                     val resourceId: Int = requireContext().resources.getIdentifier(
@@ -168,26 +170,25 @@ class OneFragment : Fragment() {
                     )
                     Uri.parse("android.resource://${ requireContext().packageName}/$resourceId")
                 } else {
-                    photo_item!!.toUri()
-                }
+                    filePathToUri(photo_item)
+                }*/
+                /*
                 val isGalleryImage = isGalleryImage(uri)
                 val isDrawableImage = isDrawableImage(uri)
-
-                if (isGalleryImage) {
+*/
+                if (isGalleryImage2(photo_item)) {
                     // 갤러리에서 가져온 이미지인 경우 처리
 
                     Glide.with(requireContext())
-                        .load(photo_item)
+                        .load(File(photo_item))
                         .into(dialogImageView)
 
-                } else if (isDrawableImage) {
+                } else {
                     // Drawable에 있는 파일인 경우 처리
 //Success
                     val resourceName = photo_item.substringAfterLast(".")
                     val resourceId: Int = requireContext().resources.getIdentifier(resourceName, "drawable",requireContext().packageName)
                     dialogImageView.setImageResource(resourceId)
-                } else {
-                    // 다른 스키마인 경우 처리
                 }
 
                 //For contact with gallery app
@@ -195,8 +196,7 @@ class OneFragment : Fragment() {
                     loadImage.launch("image/*")
 
                 }
-
-
+                Toast.makeText(requireContext(),"$photo_item",Toast.LENGTH_LONG).show()
                 phoneAdapter.notifyDataSetChanged()
 
                 val dialogAddress = dialogView.findViewById<EditText>(R.id.address)
@@ -285,18 +285,65 @@ class OneFragment : Fragment() {
 
 
     }
+    fun getImageFilePath3(uri: Uri): String {
+        val context = requireContext()
+        val contentResolver = context.contentResolver
+
+        val projection = arrayOf(MediaStore.Images.Media._ID, MediaStore.Images.Media.DISPLAY_NAME)
+        val cursor = contentResolver.query(uri, projection, null, null, null)
+        cursor?.use {
+            if (it.moveToFirst()) {
+                val idColumnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
+                val nameColumnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)
+
+                val imageId = it.getLong(idColumnIndex)
+                val imageName = it.getString(nameColumnIndex)
+
+                val inputStream = contentResolver.openInputStream(uri)
+                val imageFile = File(context.filesDir, imageName)
+
+                inputStream?.use { input ->
+                    FileOutputStream(imageFile).use { output ->
+                        input.copyTo(output)
+                    }
+                }
+
+                return imageFile.absolutePath
+            }
+        }
+
+        return ""
+    }
+    fun getImageFilePathFromGallery(uri: Uri): String {
+        val context = requireContext()
+        val projection = arrayOf(MediaStore.Images.Media.DISPLAY_NAME)
+        val cursor = context.contentResolver.query(uri, projection, null, null, null)
+        cursor?.use {
+            if (it.moveToFirst()) {
+                val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)
+                val fileName = it.getString(columnIndex)
+                val filePath = "${Environment.getExternalStorageDirectory()}/$fileName"
+                return filePath
+            }
+        }
+        return ""
+    }
+
+
     fun getImageFilePath(uri: Uri):String {
         // if (uri.scheme == "content") { //In Gallery
         val context = requireContext()
         val contentResolver = context.contentResolver
 
         // Create file path inside app's data dir
-        val filePath = (context.applicationInfo.dataDir + File.separator
-                + System.currentTimeMillis())
+       // val filePath = (context.applicationInfo.dataDir + File.separator
+         //       + System.currentTimeMillis())
+
         val file = File(filePath)
 
         return file.getAbsolutePath()
         }
+
 
     fun uriToPath(context: Context, contentUri: Uri): String {
         val proj = arrayOf(MediaStore.Images.Media.DATA)
@@ -310,18 +357,19 @@ class OneFragment : Fragment() {
         return ""
     }
 
+    fun getImageFilePath2(uri: Uri): String {
+        val projection = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor = requireContext().contentResolver.query(uri, projection, null, null, null)
+        cursor?.use {
+            if (it.moveToFirst()) {
+                val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                return it.getString(columnIndex)
+            }
+        }
+        return ""
+    }
 
-/*
-val projection = arrayOf(MediaStore.Images.Media.DATA)
-    val c = requireContext().contentResolver.query(uri, projection, null, null, null)
 
-    var index = c!!.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-    c.moveToFirst()
-
-    var result = c.getString(index)
-
-    return result
-*/
 
     companion object {
             /**
