@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
 
 
-class ImageAdapter(private val onItemClick: (Int) -> Unit) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
+class ImageAdapter : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
     private var imageList: List<Int> = emptyList()
     private var onImageClickListener: OnImageClickListener? = null
@@ -40,16 +40,6 @@ class ImageAdapter(private val onItemClick: (Int) -> Unit) : RecyclerView.Adapte
     inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val imageView: ImageView = itemView.findViewById(R.id.imageView)
-
-        init {
-            itemView.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    val imageResId = imageList[position]
-                    onItemClick(imageResId)
-                }
-            }
-        }
 
         fun bind(imageResId: Int) {
             adjustImageSize(imageResId)
