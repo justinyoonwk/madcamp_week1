@@ -260,7 +260,7 @@ class ThreeFragment : Fragment() {
                                 val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, events)
                                 adapter.notifyDataSetChanged()
                                 Toast.makeText(requireContext(),"$events,adapter이후",Toast.LENGTH_LONG).show()
-//events 제대로 들어있음
+                                //events 제대로 들어있음
                                 val count = events.size
 
                                 Toast.makeText(requireContext(),"$count",Toast.LENGTH_SHORT).show()
