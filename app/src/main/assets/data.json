@@ -1,0 +1,101 @@
+{
+  "data": [
+    {
+      "name": "홍길동",
+      "phone_Number": "010-5528-1619",
+      "fav_Food": "삽겹살 구이, 비빔냉면",
+      "dis_Food": "햄버거, 치킨",
+      "address": "대구 유성구 대학로 291",
+      "photo": "R.drawable.image8"
+    },
+    {
+      "name": "김철수",
+      "phone_Number": "010-0998-1619",
+      "fav_Food": "맥적, 계란찜",
+      "dis_Food": "떡볶이, 마라탕, 돈까스",
+      "address": "충청남도 보령시 중앙로 612동",
+      "photo": "R.drawable.image2"
+    },
+    {
+      "name": "김민희",
+      "phone_Number": "010-7714-1619",
+      "fav_Food": "떡볶이, 그릭요거트, 치즈",
+      "dis_Food": "샐러드, 참치",
+      "address": "서울시 강남구 삼성로 14 ",
+      "photo": "R.drawable.image3"
+    },
+    {
+      "name": "박영희",
+      "phone_Number": "010-1928-1619",
+      "fav_Food": "초밥, 랍스터, 육회",
+      "dis_Food": "제육볶음",
+      "address": "서울특별시 동대문구 회기로 119(회기동)",
+      "photo": "R.drawable.image4"
+    },
+    {
+      "name": "홍길동",
+      "phone_Number": "010-5528-1619",
+      "fav_Food": "삽겹살 구이, 비빔냉면",
+      "dis_Food": "햄버거, 치킨",
+      "address": "대구 유성구 대학로 291",
+      "photo": "R.drawable.image8"
+    },
+    {
+      "name": "김철수",
+      "phone_Number": "010-0998-1619",
+      "fav_Food": "맥적, 계란찜",
+      "dis_Food": "떡볶이, 마라탕, 돈까스",
+      "address": "충청남도 보령시 중앙로 612동",
+      "photo": "R.drawable.image2"
+    },
+    {
+      "name": "김민희",
+      "phone_Number": "010-7714-1619",
+      "fav_Food": "떡볶이, 그릭요거트, 치즈",
+      "dis_Food": "샐러드, 참치",
+      "address": "서울시 강남구 삼성로 14 ",
+      "photo": "R.drawable.image3"
+    },
+    {
+      "name": "박영희",
+      "phone_Number": "010-1928-1619",
+      "fav_Food": "초밥, 랍스터, 육회",
+      "dis_Food": "제육볶음",
+      "address": "서울특별시 동대문구 회기로 119(회기동)",
+      "photo": "R.drawable.image4"
+    },
+    {
+      "name": "홍길동",
+      "phone_Number": "010-5528-1619",
+      "fav_Food": "삽겹살 구이, 비빔냉면",
+      "dis_Food": "햄버거, 치킨",
+      "address": "대구 유성구 대학로 291",
+      "photo": "R.drawable.image8"
+    },
+    {
+      "name": "김철수",
+      "phone_Number": "010-0998-1619",
+      "fav_Food": "맥적, 계란찜",
+      "dis_Food": "떡볶이, 마라탕, 돈까스",
+      "address": "충청남도 보령시 중앙로 612동",
+      "photo": "R.drawable.image2"
+    },
+    {
+      "name": "김민희",
+      "phone_Number": "010-7714-1619",
+      "fav_Food": "떡볶이, 그릭요거트, 치즈",
+      "dis_Food": "샐러드, 참치",
+      "address": "서울시 강남구 삼성로 14 ",
+      "photo": "R.drawable.image3"
+    },
+    {
+      "name": "박영희",
+      "phone_Number": "010-1928-1619",
+      "fav_Food": "초밥, 랍스터, 육회",
+      "dis_Food": "제육볶음",
+      "address": "서울특별시 동대문구 회기로 119(회기동)",
+      "photo": "R.drawable.image4"
+    }
+  ]
+}
+
