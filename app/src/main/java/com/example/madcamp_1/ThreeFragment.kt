@@ -268,27 +268,9 @@ class ThreeFragment : Fragment() {
         //spinnner
         var itemList = ArrayList<Phone>()
 
-        // json parsing
-        val assetManager: AssetManager = requireContext().resources.assets
-        val inputStream = assetManager.open("data.json")
-        val jsonString = inputStream.bufferedReader().use { it.readText() }
+        // Fragment result api 사용해서 프래그먼트1으로부터 데이터 전달
 
-        val jObject = JSONObject(jsonString)
-        val jArray = jObject.getJSONArray("data")
 
-        for (index in 0 until jArray.length()) {
-            val jsonObject = jArray.getJSONObject(index)
-
-            val Data = Phone(
-                jsonObject.getString("name"),
-                jsonObject.getString("phone_Number"),
-                jsonObject.getString("fav_Food"),
-                jsonObject.getString("dis_Food"),
-                jsonObject.getString("address"),
-                jsonObject.getString("photo")
-            )
-            itemList.add(Data)
-        }
 
         var count = itemList.size
         var data2=mutableListOf("선택하세요")
