@@ -41,6 +41,10 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
         layoutManager.orientation = GridLayoutManager.VERTICAL
         imageRecyclerView.layoutManager = layoutManager
 
+        // Add item decoration for spacing between images
+        val spacingInPixels = resources.getDimensionPixelSize(R.dimen.grid_spacing)
+        imageRecyclerView.addItemDecoration(GridSpacingItemDecoration(2, spacingInPixels, true))
+
         imageRecyclerView.adapter = imageAdapter
 
         // Set the image data to the adapter (you can replace this with your own image data)
