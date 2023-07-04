@@ -12,7 +12,6 @@
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:id="@+id/image1"
-        android:src="@drawable/image1"
         android:layout_width="264dp"
         android:layout_height="264dp"
         />

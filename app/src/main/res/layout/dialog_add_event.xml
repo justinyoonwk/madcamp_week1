@@ -4,13 +4,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <EditText
+    <Spinner
         android:id="@+id/restaurantNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Restaurant Name" />
 
-    <EditText
+    <Spinner
         android:id="@+id/attendeeNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

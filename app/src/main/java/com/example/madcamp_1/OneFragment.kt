@@ -54,7 +54,7 @@ import java.lang.System.exit
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-val PERMISSION_REQUEST_CODE = 123
+
 /**
  * A simple [Fragment] subclass.
  * Use the [OneFragment.newInstance] factory method to
@@ -159,11 +159,9 @@ class OneFragment : Fragment() {
 
                 dialogPhoto = dialogView.findViewById<ImageView>(R.id.imageView)
 
-
                 fun isGalleryImage2(filePath: String): Boolean {
                     return filePath.startsWith(Environment.getExternalStorageDirectory().path)
                 }
-
 
                 if (isGalleryImage2(photo_item)) {
                     // 갤러리에서 가져온 이미지인 경우 처리
@@ -195,6 +193,8 @@ class OneFragment : Fragment() {
 
                 val dialogAddress = dialogView.findViewById<EditText>(R.id.address)
                 dialogAddress.setText(itemList[position].address)
+
+
                 builder.setView(dialogView)
                     .setPositiveButton("수정") { dialogInterface, i ->
                         itemList[position].name = dialogName.text.toString()
@@ -202,8 +202,13 @@ class OneFragment : Fragment() {
                         itemList[position].fav_Food = dialogFavFood.text.toString()
                         itemList[position].dis_Food = dialogDisFood.text.toString()
                         itemList[position].address = dialogAddress.text.toString()
-                        itemList[position].photo = filePath
+                        if(filePath != "") { //안그러면 글자만 수정해도 이전에 갤러리에서 선택했던 이미지로 이미지뷰가 설정됨
+                            itemList[position].photo = filePath
+                        }else{
+                            itemList[position].photo = itemList[position].photo
+                        }
                         phoneAdapter.notifyDataSetChanged()
+                        filePath=""
 
                     }
                     .setNegativeButton("삭제") { dialogInterface, i ->
@@ -217,15 +222,19 @@ class OneFragment : Fragment() {
         }
 
 
-
 // 연락처 추가 버튼
         val add_btn = v.findViewById<FloatingActionButton>(R.id.add_btn)
 
         add_btn.setOnClickListener{
+
         val builder = AlertDialog.Builder(context)
             val DialogView =
                 LayoutInflater.from(v.context).inflate(R.layout.custom_dialog, null)
-
+            dialogImageView = DialogView.findViewById<ImageView>(R.id.image1)
+            dialogImageView.setOnClickListener {
+                Toast.makeText(v.context,"성공?",Toast.LENGTH_LONG).show()
+                loadImage.launch("image/*")
+            }
             builder.setView(DialogView)
             .setPositiveButton("확인") { dialogInterface, i ->
                 val dialogName = DialogView.findViewById<EditText>(R.id.name).text.toString()
@@ -236,8 +245,6 @@ class OneFragment : Fragment() {
                 val dialogAddress = DialogView.findViewById<EditText>(R.id.address).text.toString()
                 dialogImageView = DialogView.findViewById(R.id.image1)
                 val dialogImage: String=filePath
-                dialogImageView.isClickable = true
-
                 fun isGalleryImage2(filePath: String): Boolean {
                     return filePath.startsWith(Environment.getExternalStorageDirectory().path)
                 }
@@ -254,17 +261,7 @@ class OneFragment : Fragment() {
                     val resourceId: Int = v.context.resources.getIdentifier(resourceName, "drawable",requireContext().packageName)
                     dialogImageView.setImageResource(resourceId)
                 }
-
                 //갤러리 접근
-                dialogImageView.setOnClickListener {
-                    Toast.makeText(v.context,"성공?",Toast.LENGTH_LONG).show()
-                    loadImage.launch("image/*")
-                }
-
-                val btn = DialogView.findViewById<ImageButton>(R.id.btn)
-                btn.setOnClickListener{
-                    Toast.makeText(v.context,"hi",Toast.LENGTH_SHORT).show()
-                }
 
                 //갱신 처리
                 phoneAdapter.notifyDataSetChanged()
