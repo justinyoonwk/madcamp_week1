@@ -39,7 +39,7 @@
                 android:layout_marginTop="18dp"
                 android:layout_marginBottom="5dp"
                 android:text="name"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="27sp"
                 android:textStyle="bold"
 
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="phone"
-                android:textColor="#BFBDBD"
+                android:textColor="@color/black"
                 android:textSize="12sp"
 
                 />

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CalendarView
-import android.widget.EditText
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AlertDialog
@@ -20,6 +19,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import org.json.JSONObject
+import android.widget.LinearLayout.LayoutParams
 
 class ThreeFragment : Fragment() {
 
@@ -38,6 +38,7 @@ class ThreeFragment : Fragment() {
         calendarView = view.findViewById(R.id.calendarView)
         eventListView = view.findViewById(R.id.eventListView)
         val addEventButton = view.findViewById<Button>(R.id.addEventButton)
+
         var itemList = ArrayList<Phone>()
 
         // json parsing
@@ -96,8 +97,8 @@ class ThreeFragment : Fragment() {
 
             var count = itemList.size
             var data2=mutableListOf("선택하세요")
-            var data= mutableListOf("선택하세요","골목","잇마이타이","가배 커피바","삼부자 부대찌개","PUBLIC","마쯔미","요시다","VERY SINJUKU","Malgm","하바COOK","BURGIZ","WOOTZ","ORANGE BLUE","태평소 국밥","뼈다구 감자탕","와타요집","COFFEE","달구지막창","정직한커피","스바라시라멘")
-            while(count>0){
+            var data= mutableListOf("선택하세요","골목","잇마이타이","가배 커피바","삼부자 부대찌개","비스트로 퍼블릭","마쯔미","요시다","베리 신주쿠","맑음","하바COOK","BURGIZ","WOOTZ","ORANGE BLUES","태평소 국밥","일당 감자탕","와타요업","에이트","달구지 막창","정직한커피","스바라시라멘")
+            while(count>0) {
                 data2.add(itemList[count-1].name)
                 count-=1
             }
@@ -173,7 +174,6 @@ class ThreeFragment : Fragment() {
                         if (events.isNotEmpty()) {
                             if (index != -1) {
                                 // Update the event here
-
                                 val newEvent =
                                     "Date: $selectedItem3, Restaurant: $et1, Attendee: $et2"
                                 events[index] = newEvent
@@ -204,18 +204,16 @@ class ThreeFragment : Fragment() {
                             val count = events.size
 
                             Toast.makeText(requireContext(),"$count",Toast.LENGTH_SHORT).show()
-                        */
+                            */
                         }
 
                     })
                 .setPositiveButton("삭제",
                     DialogInterface.OnClickListener { dialog, which ->
-
                         if (events.isNotEmpty()) {
                             val index = events.indexOf(selectedItem2) // 현재 값을 가진 요소의 인덱스 찾기
 
                             if (index != -1) {
-
                                 selectedItem3=selectedItem2.substring(6,selectedItem2.indexOf(","))
                                 events = getEventsForDate(selectedItem3)
 
@@ -238,6 +236,20 @@ class ThreeFragment : Fragment() {
         addEventButton.setOnClickListener {
             showAddEventDialog()
         }
+
+        // Get the layout params of the add event button
+        val layoutParams = addEventButton.layoutParams as ViewGroup.MarginLayoutParams
+
+        // Set the left margin to move the button to the right
+        val marginInPixels = resources.getDimensionPixelSize(R.dimen.button_margin_left)
+        layoutParams.leftMargin = marginInPixels
+
+        // Set the top margin to move the button down
+        val topMarginInPixels = resources.getDimensionPixelSize(R.dimen.button_margin_top)
+        layoutParams.topMargin = topMarginInPixels
+
+        // Set the modified layout params to the add event button
+        addEventButton.layoutParams = layoutParams
 
         return view
     }
@@ -270,12 +282,10 @@ class ThreeFragment : Fragment() {
 
         // Fragment result api 사용해서 프래그먼트1으로부터 데이터 전달
 
-
-
         var count = itemList.size
         var data2=mutableListOf("선택하세요")
-        var data= mutableListOf("선택하세요","골목","잇마이타이","가배 커피바","삼부자 부대찌개","PUBLIC","마쯔미","요시다","VERY SINJUKU","Malgm","하바COOK","BURGIZ","WOOTZ","ORANGE BLUE","태평소 국밥","뼈다구 감자탕","와타요집","COFFEE","달구지막창","정직한커피","스바라시라멘")
-        while(count>0){
+        var data= mutableListOf("선택하세요","골목","잇마이타이","가배 커피바","삼부자 부대찌개","비스트로 퍼블릭","마쯔미","요시다","베리 신주쿠","맑음","하바COOK","BURGIZ","WOOTZ","ORANGE BLUES","태평소 국밥","일당 감자탕","와타요업","에이트","달구지 막창","정직한커피","스바라시라멘")
+        while(count>0) {
             data2.add(itemList[count-1].name)
             count-=1
         }
@@ -296,7 +306,6 @@ class ThreeFragment : Fragment() {
                 id: Long
             ) {
                 restaurant=data[position]
-
             }
 
             override fun onItemSelected(
@@ -306,7 +315,6 @@ class ThreeFragment : Fragment() {
                 id: Long
             ) {
                 restaurant=data[position]
-
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -330,7 +338,7 @@ class ThreeFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                attendee=data2[position]
+                attendee = data2[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
