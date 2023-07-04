@@ -63,10 +63,10 @@ class ImageAdapter : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
             val layoutParams = imageView.layoutParams as GridLayoutManager.LayoutParams
             val spanCount = (itemView.context.resources.displayMetrics.widthPixels / itemView.context.resources.displayMetrics.density / 180).toInt() // 이미지 너비가 180dp라고 가
-            val spacing = (itemView.context.resources.displayMetrics.widthPixels / spanCount - itemView.context.resources.getDimensionPixelSize(R.dimen.image_width)) / (spanCount - 1)
-            layoutParams.width = itemView.context.resources.getDimensionPixelSize(R.dimen.image_width)
+            val spacing = (itemView.context.resources.displayMetrics.widthPixels / spanCount - itemView.context.resources.getDimensionPixelSize(R.dimen.image_width)) / (spanCount - 1)+50
+           // layoutParams.width =
             layoutParams.height = (layoutParams.width * imageHeight / imageWidth)
-            layoutParams.rightMargin = if ((adapterPosition + 1) % spanCount == 0) 0 else spacing
+            layoutParams.rightMargin =  spacing
             layoutParams.bottomMargin = spacing
             imageView.layoutParams = layoutParams
             imageView.scaleType = ImageView.ScaleType.CENTER_CROP

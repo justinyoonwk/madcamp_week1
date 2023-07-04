@@ -36,6 +36,9 @@ import androidx.core.content.ContentProviderCompat
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -130,6 +133,9 @@ class OneFragment : Fragment() {
             )
             itemList.add(Data)
         }
+        val result:ArrayList<Phone> = itemList
+        setFragmentResult("requestKey",bundleOf("bundleKey" to result))
+        parentFragmentManager.beginTransaction()
 
 
         val phoneAdapter = PhoneAdapter(itemList)

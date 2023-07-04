@@ -19,6 +19,8 @@ import android.widget.AdapterView
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.fragment.app.setFragmentResultListener
 import org.json.JSONObject
 
 class ThreeFragment : Fragment() {
@@ -268,8 +270,7 @@ class ThreeFragment : Fragment() {
         //spinnner
         var itemList = ArrayList<Phone>()
 
-        // Fragment result api 사용해서 프래그먼트1으로부터 데이터 전달
-
+        // json parsing
 
 
         var count = itemList.size
