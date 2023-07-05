@@ -20,8 +20,9 @@
 ###### 음식과 함께하는 즐거운 시간을 공유하고 새로운 사람들과의 만남을 경험해보세요. FoodMate를 통해 더 많은 맛집과 좋은 사람들을 만날 수 있습니다. 지금 FoodMate와 함께 맛있는 여정을 시작해보세요!
 
 # tab1 기본화면
-
 ![tab1](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/9b989d90-6734-4f48-b2cb-e4614d16940e)
+
+
 
 # tab1 상세 정보 다이얼로그
 
