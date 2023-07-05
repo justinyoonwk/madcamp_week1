@@ -8,7 +8,6 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
 
-
 class ImageAdapter : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
 
     private var imageList: List<Int> = emptyList()
@@ -62,17 +61,11 @@ class ImageAdapter : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
             val imageHeight = options.outHeight
 
             val layoutParams = imageView.layoutParams as GridLayoutManager.LayoutParams
-<<<<<<< HEAD
-            val spanCount = (itemView.context.resources.displayMetrics.widthPixels / itemView.context.resources.displayMetrics.density / 180).toInt() // 이미지 너비가 180dp라고 가
-            val spacing = (itemView.context.resources.displayMetrics.widthPixels / spanCount - itemView.context.resources.getDimensionPixelSize(R.dimen.image_width)) / (spanCount - 1)+50
-           // layoutParams.width =
-=======
             val spanCount = (itemView.context.resources.displayMetrics.widthPixels / itemView.context.resources.displayMetrics.density / 180).toInt() // 이미지 너비가 180dp라고 가정
             val spacing = (itemView.context.resources.displayMetrics.widthPixels / spanCount - itemView.context.resources.getDimensionPixelSize(R.dimen.image_width)) / (spanCount - 1)
             layoutParams.width = itemView.context.resources.getDimensionPixelSize(R.dimen.image_width)
->>>>>>> bc59db00b248c88517030cbc8b21b5ffd104e9bc
             layoutParams.height = (layoutParams.width * imageHeight / imageWidth)
-            layoutParams.rightMargin =  spacing
+            layoutParams.rightMargin = if ((adapterPosition + 1) % spanCount == 0) 0 else spacing
             layoutParams.bottomMargin = spacing
             imageView.layoutParams = layoutParams
             imageView.scaleType = ImageView.ScaleType.CENTER_CROP

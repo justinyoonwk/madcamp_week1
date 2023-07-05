@@ -12,6 +12,8 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.AssetManager
 import android.database.Cursor
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -65,6 +67,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class OneFragment : Fragment() {
 
+    private lateinit var itemList : ArrayList<Phone>
     private lateinit var dialogImageView: ImageView
     private lateinit var dialogPhoto:ImageView
     private lateinit var loadImage: ActivityResultLauncher<String>
@@ -110,7 +113,7 @@ class OneFragment : Fragment() {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_one, container, false)
         val rv = v.findViewById<RecyclerView>(R.id.rv)
-        val itemList = ArrayList<Phone>()
+        itemList = ArrayList<Phone>()
 
         // json parsing
         val assetManager: AssetManager = requireContext().resources.assets
@@ -133,10 +136,18 @@ class OneFragment : Fragment() {
             )
             itemList.add(Data)
         }
+        if(savedInstanceState!= null){
+            itemList= savedInstanceState.getParcelableArrayList("MyData")!!
+        }
         val result:ArrayList<Phone> = itemList
         setFragmentResult("requestKey",bundleOf("bundleKey" to result))
         parentFragmentManager.beginTransaction()
-
+        //fragment2로부터 받은 데이터
+        setFragmentResultListener("requestKey2"){key, bundle->
+// We use a String here, but any type that can be put in a Bundle is supported
+            val eventList = (savedInstanceState?.getSerializable("eventList"))
+            // Do something with the result...
+        }
 
         val phoneAdapter = PhoneAdapter(itemList)
 
@@ -145,10 +156,13 @@ class OneFragment : Fragment() {
         phoneAdapter.itemClickListener = object : PhoneAdapter.onItemClickListener {
             override fun onItemClick(position: Int) {
 
-                val builder = AlertDialog.Builder(v.context)
+                //show dialog
+                val builder = Dialog(v.context)
                 val dialogView =
                     LayoutInflater.from(v.context).inflate(R.layout.custom_dialog_info, null)
-
+                builder.setContentView(dialogView)
+                builder.show()
+                builder.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) // 라운드 배경에 흰 색상 보이는 것 방지
                 val dialogName = dialogView.findViewById<EditText>(R.id.name)
                 dialogName.setText(itemList[position].name)
 
@@ -191,18 +205,20 @@ class OneFragment : Fragment() {
                 //For contact with gallery app
                 dialogPhoto.setOnClickListener {
                     loadImage2.launch("image/*")
-                    Toast.makeText(requireContext(), "성공?", Toast.LENGTH_LONG).show()
+
 
                 }
-                Toast.makeText(requireContext(), "$photo_item", Toast.LENGTH_LONG).show()
+
                 phoneAdapter.notifyDataSetChanged()
 
                 val dialogAddress = dialogView.findViewById<EditText>(R.id.address)
                 dialogAddress.setText(itemList[position].address)
 
+                val edit = dialogView.findViewById<Button>(R.id.edit)
+                val delete = dialogView.findViewById<Button>(R.id.delete)
+                val cancel = dialogView.findViewById<Button>(R.id.cancel)
 
-                builder.setView(dialogView)
-                    .setPositiveButton("수정") { dialogInterface, i ->
+               edit.setOnClickListener{
                         itemList[position].name = dialogName.text.toString()
                         itemList[position].phone_Number = dialogPhone.text.toString()
                         itemList[position].fav_Food = dialogFavFood.text.toString()
@@ -215,14 +231,18 @@ class OneFragment : Fragment() {
                         }
                         phoneAdapter.notifyDataSetChanged()
                         filePath=""
+                        builder.dismiss()
 
                     }
-                    .setNegativeButton("삭제") { dialogInterface, i ->
+                   delete.setOnClickListener{
                         // 취소 버튼 클릭 시 수행할 작업
                         itemList.removeAt(position)
                         phoneAdapter.notifyDataSetChanged()
+                       builder.dismiss()
                     }
-                    .show()
+                   cancel.setOnClickListener{
+                       builder.dismiss()
+                   }
             }
 
         }
@@ -233,16 +253,22 @@ class OneFragment : Fragment() {
 
         add_btn.setOnClickListener{
 
-        val builder = AlertDialog.Builder(context)
+        val builder = Dialog(requireContext())
+
             val DialogView =
                 LayoutInflater.from(v.context).inflate(R.layout.custom_dialog, null)
+            builder.setContentView(DialogView)
+            builder.show()
             dialogImageView = DialogView.findViewById<ImageView>(R.id.image1)
             dialogImageView.setOnClickListener {
-                Toast.makeText(v.context,"성공?",Toast.LENGTH_LONG).show()
+
                 loadImage.launch("image/*")
             }
-            builder.setView(DialogView)
-            .setPositiveButton("확인") { dialogInterface, i ->
+            builder.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+            val cancel = DialogView.findViewById<Button>(R.id.cancel)
+            val add = DialogView.findViewById<Button>(R.id.add)
+
+            add.setOnClickListener{
                 val dialogName = DialogView.findViewById<EditText>(R.id.name).text.toString()
                 val dialogPhone =
                     DialogView.findViewById<EditText>(R.id.phone_Number).text.toString()
@@ -282,11 +308,12 @@ class OneFragment : Fragment() {
                         dialogImage
                     )
                 )
+                builder.dismiss()
             }
-            .setNegativeButton("취소") { dialogInterface, i ->
-                // 취소일 때 아무 액션이 없으므로 빈칸
+            cancel.setOnClickListener{
+                builder.dismiss()
             }
-            .show()
+
     }
             val layoutManager = LinearLayoutManager(context)
             layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -294,6 +321,10 @@ class OneFragment : Fragment() {
             rv.adapter = phoneAdapter
             return v
 
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList("MyData",itemList)
     }
 
     //갤러리 이미지 경로를 찾아오는 코드

@@ -264,7 +264,6 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                 dialogBuilder.create().show()
             }
         })
-
         return view
     }
 

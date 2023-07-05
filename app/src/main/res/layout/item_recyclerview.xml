@@ -39,19 +39,20 @@
                 android:layout_marginTop="18dp"
                 android:layout_marginBottom="5dp"
                 android:text="name"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="27sp"
                 android:textStyle="bold"
-
+                android:fontFamily="@font/maruburiregular"
                 />
 
             <TextView
+                android:fontFamily="@font/maruburiregular"
                 android:id="@+id/phone_Number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="phone"
-                android:textColor="#BFBDBD"
+                android:textColor="#A3A1A1"
                 android:textSize="12sp"
 
                 />
