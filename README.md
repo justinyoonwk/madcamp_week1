@@ -18,7 +18,7 @@ FoodMate를 통해 더 많은 맛집과 좋은 사람들을 만날 수 있습니
 지금 FoodMate와 함께 맛있는 여정을 시작해보세요!
 
 스크린샷 3장 이상:
-![tab1](https://github.com/justinyoonwk/madcamp_week1/assets/44605105/cc478b94-5ea0-41d4-967b-9fb17e18edc8)
+![tab1](https://github.com/justinyoonwk/madcamp_week1/assets/44605105/cc478b94-5ea0-41d4-967b-9fb17e18edc8 =300x)
 ![tab2](https://github.com/justinyoonwk/madcamp_week1/assets/44605105/1f8db1dd-d44a-478d-9350-47f59f618940)
 ![tab3](https://github.com/justinyoonwk/madcamp_week1/assets/44605105/9f0a0aa7-9db1-4d53-abae-bebaf6e4d2ab)
 ![popup](https://github.com/justinyoonwk/madcamp_week1/assets/44605105/0836aacf-ad01-4c3f-a67a-07acbef7288c)
