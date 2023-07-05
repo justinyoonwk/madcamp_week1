@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CalendarView
+import android.widget.EditText
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AlertDialog
@@ -32,7 +33,6 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.json.JSONObject
-import android.widget.LinearLayout.LayoutParams
 
 class ThreeFragment : Fragment() {
 
@@ -54,7 +54,6 @@ class ThreeFragment : Fragment() {
         calendarView = view.findViewById(R.id.calendarView)
         eventListView = view.findViewById(R.id.eventListView)
         val addEventButton = view.findViewById<Button>(R.id.addEventButton)
-
 
         //fragment1로부터 받은 데이터
         setFragmentResultListener("requestKey"){key, bundle->
@@ -102,8 +101,8 @@ class ThreeFragment : Fragment() {
             //spinnner
             var count = itemList.size
             var data2=mutableListOf("선택하세요")
-            var data= mutableListOf("선택하세요","골목","잇마이타이","가배 커피바","삼부자 부대찌개","비스트로 퍼블릭","마쯔미","요시다","베리 신주쿠","맑음","하바COOK","BURGIZ","WOOTZ","ORANGE BLUES","태평소 국밥","일당 감자탕","와타요업","에이트","달구지 막창","정직한커피","스바라시라멘")
-            while(count>0) {
+            var data=mutableListOf("선택하세요","골목","잇마이타이","가배 커피바","삼부자 부대찌개","비스트로 퍼블릭","마쯔미","요시다","베리 신주쿠","맑음","하바COOK","BURGIZ","WOOTZ","ORANGE BLUES","태평소 국밥","일당 감자탕","와타요업","에이트","달구지 막창","정직한커피","스바라시라멘")
+            while(count>0){
                 data2.add(itemList[count-1].name)
                 count-=1
             }
@@ -171,66 +170,66 @@ class ThreeFragment : Fragment() {
             builder.setContentView(view)
             builder.show()
             builder.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-               edit.setOnClickListener {
+            edit.setOnClickListener {
 
-                   val index = events.indexOf(selectedItem2)
-                   if (events.isNotEmpty()) {
-                       if (index != -1) {
-                           // Update the event here
-                           val newEvent =
-                               "Date: $selectedItem3, Restaurant: $et1, Attendee: $et2"
-                           events[index] = newEvent
-                           updateEventListView(selectedItem3)
-                           Toast.makeText(
-                               requireContext(),
-                               "일정이 변경되었습니다",
-                               Toast.LENGTH_SHORT
-                           ).show()
-                       } else {
-                           // 해당 요소가 리스트에 없는 경우에 대한 처리
-                           val count = events.size
-                           Toast.makeText(
-                               requireContext(),
-                               "$count 해당 요소를 찾을 수 없습니다.",
-                               Toast.LENGTH_SHORT
-                           ).show()
-                       }
-                   } else {
-                       // 리스트가 비어있는 경우에 대한 처리
-                   }
-                   builder.dismiss()
-               }
-                delete.setOnClickListener {
-                    if (events.isNotEmpty()) {
-                        val index = events.indexOf(selectedItem2) // 현재 값을 가진 요소의 인덱스 찾기
-
-                        if (index != -1) {
-
-                            selectedItem3 = selectedItem2.substring(6, selectedItem2.indexOf(","))
-                            events = getEventsForDate(selectedItem3)
-
-                            events.remove(selectedItem2)
-
-                            var adapter = ArrayAdapter(
-                                requireContext(),
-                                android.R.layout.simple_list_item_1,
-                                events
-                            )
-                            eventListView.adapter = adapter
-                        } else {
-                            // 해당 요소가 리스트에 없는 경우에 대한 처리
-                            Toast.makeText(
-                                requireContext(),
-                                "해당 요소를 찾을 수 없습니다.",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+                val index = events.indexOf(selectedItem2)
+                if (events.isNotEmpty()) {
+                    if (index != -1) {
+                        // Update the event here
+                        val newEvent =
+                            "Date: $selectedItem3, Restaurant: $et1, Attendee: $et2"
+                        events[index] = newEvent
+                        updateEventListView(selectedItem3)
+                        Toast.makeText(
+                            requireContext(),
+                            "일정이 변경되었습니다",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     } else {
-                        // 리스트가 비어있는 경우에 대한 처리
-                        Toast.makeText(requireContext(), "리스트가 비어있습니다.", Toast.LENGTH_SHORT).show()
+                        // 해당 요소가 리스트에 없는 경우에 대한 처리
+                        val count = events.size
+                        Toast.makeText(
+                            requireContext(),
+                            "$count 해당 요소를 찾을 수 없습니다.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                    builder.dismiss()
+                } else {
+                    // 리스트가 비어있는 경우에 대한 처리
                 }
+                builder.dismiss()
+            }
+            delete.setOnClickListener {
+                if (events.isNotEmpty()) {
+                    val index = events.indexOf(selectedItem2) // 현재 값을 가진 요소의 인덱스 찾기
+
+                    if (index != -1) {
+
+                        selectedItem3 = selectedItem2.substring(6, selectedItem2.indexOf(","))
+                        events = getEventsForDate(selectedItem3)
+
+                        events.remove(selectedItem2)
+
+                        var adapter = ArrayAdapter(
+                            requireContext(),
+                            android.R.layout.simple_list_item_1,
+                            events
+                        )
+                        eventListView.adapter = adapter
+                    } else {
+                        // 해당 요소가 리스트에 없는 경우에 대한 처리
+                        Toast.makeText(
+                            requireContext(),
+                            "해당 요소를 찾을 수 없습니다.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } else {
+                    // 리스트가 비어있는 경우에 대한 처리
+                    Toast.makeText(requireContext(), "리스트가 비어있습니다.", Toast.LENGTH_SHORT).show()
+                }
+                builder.dismiss()
+            }
         }
 
 // Set the click listener for the add event button
@@ -242,20 +241,6 @@ class ThreeFragment : Fragment() {
         parentFragmentManager.beginTransaction()
 
         updateEventListViewForAllDates()
-
-        // Get the layout params of the add event button
-        val layoutParams = addEventButton.layoutParams as ViewGroup.MarginLayoutParams
-
-        // Set the left margin to move the button to the right
-        val marginInPixels = resources.getDimensionPixelSize(R.dimen.button_margin_left)
-        layoutParams.leftMargin = marginInPixels
-
-        // Set the top margin to move the button down
-        val topMarginInPixels = resources.getDimensionPixelSize(R.dimen.button_margin_top)
-        layoutParams.topMargin = topMarginInPixels
-
-        // Set the modified layout params to the add event button
-        addEventButton.layoutParams = layoutParams
 
         return view
     }
@@ -305,16 +290,14 @@ class ThreeFragment : Fragment() {
         var attendee: String = ""
         var restaurant: String = ""
         //spinnner
-        var itemList = ArrayList<Phone>()
 
-        // Fragment result api 사용해서 프래그먼트1으로부터 데이터 전달
 
         var count = itemList.size
-        var data2=mutableListOf("선택하세요")
-        var data= mutableListOf("선택하세요","골목","잇마이타이","가배 커피바","삼부자 부대찌개","비스트로 퍼블릭","마쯔미","요시다","베리 신주쿠","맑음","하바COOK","BURGIZ","WOOTZ","ORANGE BLUES","태평소 국밥","일당 감자탕","와타요업","에이트","달구지 막창","정직한커피","스바라시라멘")
-        while(count>0) {
-            data2.add(itemList[count-1].name)
-            count-=1
+        var data2 =mutableListOf("선택하세요")
+        var data=mutableListOf("선택하세요","골목","잇마이타이","가배 커피바","삼부자 부대찌개","비스트로 퍼블릭","마쯔미","요시다","베리 신주쿠","맑음","하바COOK","BURGIZ","WOOTZ","ORANGE BLUES","태평소 국밥","일당 감자탕","와타요업","에이트","달구지 막창","정직한커피","스바라시라멘")
+        while (count > 0) {
+            data2.add(itemList[count - 1].name)
+            count -= 1
         }
 
         var adap =
@@ -335,6 +318,7 @@ class ThreeFragment : Fragment() {
                 id: Long
             ) {
                 restaurant = data[position]
+
             }
 
             override fun onItemSelected(
@@ -344,6 +328,7 @@ class ThreeFragment : Fragment() {
                 id: Long
             ) {
                 restaurant = data[position]
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -399,24 +384,24 @@ class ThreeFragment : Fragment() {
 
         // cancel 버튼 이벤트
         cancel.setOnClickListener{
-                builder.dismiss()
-            }
+            builder.dismiss()
+        }
 
         //ok 버튼 이벤트 -> 일정 추가
         ok.setOnClickListener{
-                if (restaurantName.isNotBlank() && attendeeName.isNotBlank()) {
-                    // Save the event (restaurant name and attendee name) to the selected date
-                    saveEvent(year, month, dayOfMonth, restaurantName, attendeeName)
+            if (restaurantName.isNotBlank() && attendeeName.isNotBlank()) {
+                // Save the event (restaurant name and attendee name) to the selected date
+                saveEvent(year, month, dayOfMonth, restaurantName, attendeeName)
 
-                    // Update the event list view
-                    updateEventListView("$dayOfMonth/${month + 1}/$year")
-                    Toast.makeText(requireContext(), "일정이 등록되었습니다", Toast.LENGTH_SHORT).show()
+                // Update the event list view
+                updateEventListView("$dayOfMonth/${month + 1}/$year")
+                Toast.makeText(requireContext(), "일정이 등록되었습니다", Toast.LENGTH_SHORT).show()
 
-                } else {
-                    Toast.makeText(requireContext(), "일정을 입력해주세요", Toast.LENGTH_SHORT).show()
-                }
-                builder.dismiss()
+            } else {
+                Toast.makeText(requireContext(), "일정을 입력해주세요", Toast.LENGTH_SHORT).show()
             }
+            builder.dismiss()
+        }
 
 
     }

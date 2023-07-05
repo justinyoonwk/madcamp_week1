@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="1000dp"
+    android:layout_width="700dp"
     android:layout_height="300dp"
     android:orientation="vertical"
     android:background="@drawable/bg_gradient">
@@ -11,23 +11,28 @@
         android:orientation="vertical"
         >
     <Spinner
+        android:fontFamily="@font/nanumsquareround"
         android:id="@+id/restaurantNameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Restaurant Name" />
 
     <Spinner
+        android:fontFamily="@font/nanumsquareround"
         android:id="@+id/attendeeNameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Attendee Name" />
     </LinearLayout>
-    <Button
+    <android.widget.Button
+        android:fontFamily="@font/nanumsquareround"
         android:background="@drawable/buttom"
         android:textColor="@color/black"
         android:id="@+id/datePickerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"
         android:text="Select Date" />
 
     <LinearLayout
@@ -40,7 +45,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"/>
-        <Button
+        <android.widget.Button
+            android:fontFamily="@font/nanumsquareround"
             android:background="@drawable/buttom"
             android:textColor="@color/black"
             android:layout_gravity="right"
@@ -50,7 +56,8 @@
             android:text="ADD"
             />
 
-        <Button
+        <android.widget.Button
+            android:fontFamily="@font/nanumsquareround"
             android:background="@drawable/buttom"
             android:textColor="@color/black"
             android:layout_marginLeft="8dp"

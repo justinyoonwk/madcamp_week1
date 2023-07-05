@@ -36,17 +36,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp"
                 android:text="name"
                 android:textColor="@color/black"
                 android:textSize="27sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/maruburiregular"
+                android:fontFamily="@font/nanumsquareround"
                 />
 
             <TextView
-                android:fontFamily="@font/maruburiregular"
+                android:fontFamily="@font/nanumsquareround"
                 android:id="@+id/phone_Number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

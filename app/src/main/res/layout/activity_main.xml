@@ -21,6 +21,7 @@
             app:layout_scrollFlags="scroll|enterAlways">
 
             <TextView
+                android:fontFamily="@font/nanumsquareround"
                 android:id="@+id/toolbar_tv"
                 android:textSize="20sp"
                 android:layout_width="wrap_content"

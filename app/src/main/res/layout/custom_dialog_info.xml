@@ -38,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/nanumsquareround"
 
          />
     </LinearLayout>
@@ -58,6 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/nanumsquareround"
          />
     </LinearLayout>
     <LinearLayout
@@ -76,6 +78,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/nanumsquareround"
         />
     </LinearLayout>
     <LinearLayout
@@ -94,6 +97,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/nanumsquareround"
         />
     </LinearLayout>
 
@@ -113,16 +117,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/nanumsquareround"
         />
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="15dp"
-
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
+            <android.widget.Button
                 android:background="@drawable/buttom"
                 android:textColor="@color/black"
                 android:id="@+id/edit"
@@ -130,8 +134,13 @@
                 android:layout_height="wrap_content"
                 android:text="수정"
                 android:layout_gravity="left"
+                android:fontFamily="@font/nanumsquareround"
                 />
-            <Button
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <android.widget.Button
                 android:background="@drawable/buttom"
                 android:textColor="@color/black"
                 android:id="@+id/delete"
@@ -139,18 +148,23 @@
                 android:layout_height="wrap_content"
                 android:text="삭제"
                 android:layout_gravity="center"
+                android:fontFamily="@font/nanumsquareround"
 
                 />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
 
-            <Button
+            <android.widget.Button
                 android:background="@drawable/buttom"
                 android:textColor="@color/black"
-                android:layout_marginLeft="8dp"
                 android:id="@+id/cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="취소"
-                android:layout_gravity="right"/>
+                android:layout_gravity="right"
+                android:fontFamily="@font/nanumsquareround"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

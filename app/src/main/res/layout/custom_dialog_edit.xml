@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="700dp"
+    android:layout_width="600dp"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient">
 <LinearLayout
@@ -14,13 +14,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingVertical="10dp"
+        android:fontFamily="@font/nanumsquareround"
         />
 
     <Spinner
+
         android:id="@+id/Attendee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingVertical="10dp"
+        android:fontFamily="@font/nanumsquareround"
         />
 </LinearLayout>
     <LinearLayout
@@ -33,7 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"/>
-        <Button
+        <android.widget.Button
             android:background="@drawable/buttom"
             android:textColor="@color/black"
             android:layout_gravity="right"
@@ -41,9 +44,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit"
+            android:fontFamily="@font/nanumsquareround"
             />
 
-        <Button
+        <android.widget.Button
             android:background="@drawable/buttom"
             android:textColor="@color/black"
             android:layout_marginLeft="8dp"
@@ -51,7 +55,8 @@
             android:id="@+id/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"/>
+            android:text="Delete"
+            android:fontFamily="@font/nanumsquareround"/>
     </LinearLayout>
 
 </LinearLayout>

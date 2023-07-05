@@ -105,52 +105,7 @@
       "dis_Food": "순대",
       "address": "경기도 성남시 분당구 정자동 789번지",
       "photo": "R.drawable.pro13"
-    },
-    {
-      "name": "이지현",
-      "phone_Number": "010-3485-4246",
-      "fav_Food": "짬뽕",
-      "dis_Food": "양꼬치",
-      "address": "서울특별시 마포구 홍대입구역 101번출구",
-      "photo": "R.drawable.pro14"
-    },
-    {
-      "name": "이혜진",
-      "phone_Number": "010-3724-8121",
-      "fav_Food": "햄버거",
-      "dis_Food": "아이스티",
-      "address": "부산광역시 해운대구 해운대해수욕장 789번지",
-      "photo": "R.drawable.pro15"
-    },
-    {
-      "name": "이지원",
-      "phone_Number": "010-1111-4444",
-      "fav_Food": "짬뽕",
-      "dis_Food": "계란말이",
-      "address": "경기도 안양시 동안구 비산동 456번지",
-      "photo": "R.drawable.pro16"
-    },
-    {
-      "name": "박준영",
-      "phone_Number": "010-2277-2727",
-      "fav_Food": "쌀국수",
-      "dis_Food": "치킨",
-      "address": "인천광역시 남구 주안로 789번길",
-      "photo": "R.drawable.pro17"
-    },
-    {
-      "name": "이승현",
-      "phone_Number": "010-9111-1119",
-      "fav_Food": "초콜릿",
-      "dis_Food": "떡국",
-      "address": "광주광역시 북구 용봉동 321번지",
-      "photo": "R.drawable.pro18"
     }
-
-
-
-
-
 
 
 
