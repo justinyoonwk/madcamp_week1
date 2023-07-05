@@ -20,4 +20,5 @@
 스크린샷 3장 이상:
 
 tab1 기존의 연락처 수정 및 삭제
-![Screenshot_20230705-165031_madcamp_1](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/eb9088db-aea9-44bb-ba57-e4fa029d1526)
+
+![tab3](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/e5a54a71-74e8-4c9a-9fc5-3821ab4eec45)
