@@ -41,7 +41,8 @@ tab2 상세 정보 화면
 
 
 tab3 기본 화면
-![Screenshot_20230705-164940_madcamp_1](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/ac44e10c-9d40-4c64-ad7f-4f1422c6636e)
+
+![Screenshot_20230705-164940_madcamp_1](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/7ae2a760-1593-4354-a416-dfe11f6ae4c1)
 
 
 
