@@ -336,7 +336,7 @@ class OneFragment : Fragment() {
             if (it.moveToFirst()) {
                 val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)
                 val fileName = it.getString(columnIndex)
-                val one = requireContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.getAbsolutePath();
+                val one = requireContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.absolutePath
                 val filePath = "/storage/emulated/0/Download/$fileName"
 
                 return filePath

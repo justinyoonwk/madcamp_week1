@@ -17,6 +17,9 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import android.widget.LinearLayout
 import android.graphics.BitmapFactory
+import android.content.Intent
+import android.net.Uri
+import android.widget.Button
 
 class TwoFragment : Fragment(), OnMapReadyCallback {
 
@@ -76,7 +79,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
         imageAdapter.setOnImageClickListener(object : ImageAdapter.OnImageClickListener {
             override fun onImageClick(imageResId: Int) {
                 val dialogBuilder = AlertDialog.Builder(requireContext())
-                    .setTitle("Image Popup")
+                    .setTitle("Restaurant Info")
                     .setPositiveButton("OK") { dialog, _ ->
                         dialog.dismiss()
                     }
@@ -98,7 +101,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                 val desiredHeight = (dialogWidth / 2) / aspectRatio
 
                 // Set the layout parameters of the ImageView and MapView
-                val imageLayoutParams = LinearLayout.LayoutParams(dialogWidth / 2, desiredHeight.toInt())
+                val imageLayoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, desiredHeight.toInt())
                 imageView?.layoutParams = imageLayoutParams  // Check if imageView is null before setting layout params
                 mapView?.layoutParams = imageLayoutParams  // Check if mapView is null before setting layout params
 
@@ -111,8 +114,11 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                 val popFoodImageView = dialogView.findViewById<ImageView>(R.id.pop_food)
                 val popMenuImageView = dialogView.findViewById<ImageView>(R.id.pop_menu)
 
+                var url = "example.com"
+
                 when (imageResId) {
                     R.drawable.image1 -> {
+                        url = "https://m.blog.naver.com/astro_physicist/222848624339"
                         popFoodImageView.setImageResource(R.drawable.pop1_food)
                         popMenuImageView.setImageResource(R.drawable.pop1_menu)
                         latitude = 36.363037  // Location 1 latitude
@@ -120,6 +126,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image2 -> {
+                        url = "https://www.instagram.com/p/CqfkBViyLzE/"
                         popFoodImageView.setImageResource(R.drawable.pop2_food)
                         popMenuImageView.setImageResource(R.drawable.pop2_menu)
                         latitude = 36.363657  // Location 2 latitude
@@ -127,6 +134,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image3 -> {
+                        url = "https://m.blog.naver.com/lcw6285/221892740937"
                         popFoodImageView.setImageResource(R.drawable.pop3_food)
                         popMenuImageView.setImageResource(R.drawable.pop3_menu)
                         latitude = 36.363496  // Location 3 latitude
@@ -134,6 +142,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image4 -> {
+                        url = "https://blog.naver.com/kimyk926/221991614114"
                         popFoodImageView.setImageResource(R.drawable.pop4_food)
                         popMenuImageView.setImageResource(R.drawable.pop4_menu)
                         latitude = 36.363423  // Location 4 latitude
@@ -141,6 +150,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image5 -> {
+                        url = "https://www.instagram.com/bistro_public/"
                         popFoodImageView.setImageResource(R.drawable.pop5_food)
                         popMenuImageView.setImageResource(R.drawable.pop5_menu)
                         latitude = 36.362481  // Location 5 latitude
@@ -148,6 +158,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image6 -> {
+                        url = "https://www.instagram.com/matsumi_ramen/"
                         popFoodImageView.setImageResource(R.drawable.pop6_food)
                         popMenuImageView.setImageResource(R.drawable.pop6_menu)
                         latitude = 36.363142  // Location 6 latitude
@@ -155,6 +166,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image7 -> {
+                        url = "https://mandarin74.tistory.com/251"
                         popFoodImageView.setImageResource(R.drawable.pop7_food)
                         popMenuImageView.setImageResource(R.drawable.pop7_menu)
                         latitude = 36.363557  // Location 7 latitude
@@ -162,6 +174,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image8 -> {
+                        url = "https://www.instagram.com/verysinjuku/"
                         popFoodImageView.setImageResource(R.drawable.pop8_food)
                         popMenuImageView.setImageResource(R.drawable.pop8_menu)
                         latitude = 36.363037  // Location 8 latitude
@@ -169,6 +182,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image9 -> {
+                        url = "https://m.blog.naver.com/minheeso/221676204475"
                         popFoodImageView.setImageResource(R.drawable.pop9_food)
                         popMenuImageView.setImageResource(R.drawable.pop9_menu)
                         latitude = 36.363325  // Location 9 latitude
@@ -176,6 +190,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image10 -> {
+                        url = "https://m.blog.naver.com/tlalsrlwk/221983625018"
                         popFoodImageView.setImageResource(R.drawable.pop10_food)
                         popMenuImageView.setImageResource(R.drawable.pop10_menu)
                         latitude =  36.362434 // Location 10 latitude
@@ -183,6 +198,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image11 -> {
+                        url = "https://www.instagram.com/burgiz__/"
                         popFoodImageView.setImageResource(R.drawable.pop11_food)
                         popMenuImageView.setImageResource(R.drawable.pop11_menu)
                         latitude = 36.363507  // Location 11 latitude
@@ -190,6 +206,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image12 -> {
+                        url = "https://loahyou.tistory.com/4"
                         popFoodImageView.setImageResource(R.drawable.pop12_food)
                         popMenuImageView.setImageResource(R.drawable.pop12_menu)
                         latitude = 36.352701  // Location 12 latitude
@@ -197,6 +214,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image13 -> {
+                        url = "https://www.instagram.com/orangeblues_daejeon/"
                         popFoodImageView.setImageResource(R.drawable.pop13_food)
                         popMenuImageView.setImageResource(R.drawable.pop13_menu)
                         latitude = 36.352612  // Location 13 latitude
@@ -204,6 +222,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image14 -> {
+                        url = "https://golove.tistory.com/220"
                         popFoodImageView.setImageResource(R.drawable.pop14_food)
                         popMenuImageView.setImageResource(R.drawable.pop14_menu)
                         latitude = 36.357402  // Location 14 latitude
@@ -211,6 +230,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image15 -> {
+                        url = "https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=jusinking&logNo=221357265065"
                         popFoodImageView.setImageResource(R.drawable.pop15_food)
                         popMenuImageView.setImageResource(R.drawable.pop15_menu)
                         latitude = 36.356487  // Location 15 latitude
@@ -218,6 +238,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image16 -> {
+                        url = "https://m.blog.naver.com/w3wow/221895597311"
                         popFoodImageView.setImageResource(R.drawable.pop16_food)
                         popMenuImageView.setImageResource(R.drawable.pop16_menu)
                         latitude = 36.352596  // Location 16 latitude
@@ -225,6 +246,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image17 -> {
+                        url = "https://www.instagram.com/cafe_aight_official_/"
                         popFoodImageView.setImageResource(R.drawable.pop17_food)
                         popMenuImageView.setImageResource(R.drawable.pop17_menu)
                         latitude = 36.359874  // Location 17 latitude
@@ -232,6 +254,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image18 -> {
+                        url = "https://m.blog.naver.com/serendipity_hj/222550653189"
                         popFoodImageView.setImageResource(R.drawable.pop18_food)
                         popMenuImageView.setImageResource(R.drawable.pop18_menu)
                         latitude = 36.362025  // Location 18 latitude
@@ -239,6 +262,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image19 -> {
+                        url = "https://www.instagram.com/honestcoffee_kr/"
                         popFoodImageView.setImageResource(R.drawable.pop19_food)
                         popMenuImageView.setImageResource(R.drawable.pop19_menu)
                         latitude = 36.363032  // Location 19 latitude
@@ -246,6 +270,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     R.drawable.image20 -> {
+                        url = "https://www.instagram.com/subarashi_men/"
                         popFoodImageView.setImageResource(R.drawable.pop20_food)
                         popMenuImageView.setImageResource(R.drawable.pop20_menu)
                         latitude = 36.359423  // Location 20 latitude
@@ -258,6 +283,13 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                         latitude = 0.0  // Default location latitude
                         longitude = 0.0  // Default location longitude
                     }
+                }
+
+                // Add a button to the dialog
+                val openUrlButton = dialogView.findViewById<Button>(R.id.openUrlButton)
+                openUrlButton.setOnClickListener {  // Replace with your desired URL
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    startActivity(intent)
                 }
 
                 dialogBuilder.setView(dialogView as View)

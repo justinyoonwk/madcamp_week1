@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CalendarView
-import android.widget.EditText
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AlertDialog
@@ -33,6 +32,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.json.JSONObject
+import android.widget.LinearLayout.LayoutParams
 
 class ThreeFragment : Fragment() {
 
@@ -54,6 +54,7 @@ class ThreeFragment : Fragment() {
         calendarView = view.findViewById(R.id.calendarView)
         eventListView = view.findViewById(R.id.eventListView)
         val addEventButton = view.findViewById<Button>(R.id.addEventButton)
+
 
         //fragment1로부터 받은 데이터
         setFragmentResultListener("requestKey"){key, bundle->
@@ -101,8 +102,8 @@ class ThreeFragment : Fragment() {
             //spinnner
             var count = itemList.size
             var data2=mutableListOf("선택하세요")
-            var data=mutableListOf("선택하세요","골목","잇마이타이","가배 커피바","삼부자 부대찌개","PUBLIC","마쯔미","요시다","VERY SINJUKU","Malgm","하바COOK","BURGIZ","WOOTZ","ORANGE BLUE","태평소 국밥","뼈다구 감자탕","와타요집","COFFEE","달구지막창","정직한커피","스바라시라멘")
-            while(count>0){
+            var data= mutableListOf("선택하세요","골목","잇마이타이","가배 커피바","삼부자 부대찌개","비스트로 퍼블릭","마쯔미","요시다","베리 신주쿠","맑음","하바COOK","BURGIZ","WOOTZ","ORANGE BLUES","태평소 국밥","일당 감자탕","와타요업","에이트","달구지 막창","정직한커피","스바라시라멘")
+            while(count>0) {
                 data2.add(itemList[count-1].name)
                 count-=1
             }
@@ -242,6 +243,20 @@ class ThreeFragment : Fragment() {
 
         updateEventListViewForAllDates()
 
+        // Get the layout params of the add event button
+        val layoutParams = addEventButton.layoutParams as ViewGroup.MarginLayoutParams
+
+        // Set the left margin to move the button to the right
+        val marginInPixels = resources.getDimensionPixelSize(R.dimen.button_margin_left)
+        layoutParams.leftMargin = marginInPixels
+
+        // Set the top margin to move the button down
+        val topMarginInPixels = resources.getDimensionPixelSize(R.dimen.button_margin_top)
+        layoutParams.topMargin = topMarginInPixels
+
+        // Set the modified layout params to the add event button
+        addEventButton.layoutParams = layoutParams
+
         return view
     }
     override fun onSaveInstanceState(outState: Bundle) {
@@ -290,36 +305,16 @@ class ThreeFragment : Fragment() {
         var attendee: String = ""
         var restaurant: String = ""
         //spinnner
+        var itemList = ArrayList<Phone>()
 
+        // Fragment result api 사용해서 프래그먼트1으로부터 데이터 전달
 
         var count = itemList.size
-        var data2 =mutableListOf("선택하세요")
-        var data =mutableListOf(
-            "선택하세요",
-            "골목",
-            "잇마이타이",
-            "가배 커피바",
-            "삼부자 부대찌개",
-            "PUBLIC",
-            "마쯔미",
-            "요시다",
-            "VERY SINJUKU",
-            "Malgm",
-            "하바COOK",
-            "BURGIZ",
-            "WOOTZ",
-            "ORANGE BLUE",
-            "태평소 국밥",
-            "뼈다구 감자탕",
-            "와타요집",
-            "COFFEE",
-            "달구지막창",
-            "정직한커피",
-            "스바라시라멘"
-        )
-        while (count > 0) {
-            data2.add(itemList[count - 1].name)
-            count -= 1
+        var data2=mutableListOf("선택하세요")
+        var data= mutableListOf("선택하세요","골목","잇마이타이","가배 커피바","삼부자 부대찌개","비스트로 퍼블릭","마쯔미","요시다","베리 신주쿠","맑음","하바COOK","BURGIZ","WOOTZ","ORANGE BLUES","태평소 국밥","일당 감자탕","와타요업","에이트","달구지 막창","정직한커피","스바라시라멘")
+        while(count>0) {
+            data2.add(itemList[count-1].name)
+            count-=1
         }
 
         var adap =
@@ -340,7 +335,6 @@ class ThreeFragment : Fragment() {
                 id: Long
             ) {
                 restaurant = data[position]
-
             }
 
             override fun onItemSelected(
@@ -350,7 +344,6 @@ class ThreeFragment : Fragment() {
                 id: Long
             ) {
                 restaurant = data[position]
-
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {

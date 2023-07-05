@@ -26,7 +26,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="FoodMate"
-                android:textColor="#fff" />
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"/>
 
         </androidx.appcompat.widget.Toolbar>
 
