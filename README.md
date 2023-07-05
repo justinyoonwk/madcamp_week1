@@ -19,20 +19,32 @@
 
 스크린샷 3장 이상:
 
-tab1 기본 화면
-![tab1](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/599c718d-68bb-426d-b7cb-d4495fb4c0a3)
+tab1 기본화면
+
+![tab1](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/9b989d90-6734-4f48-b2cb-e4614d16940e)
+
+
 tab1 상세 정보 다이얼로그
-![tab1_2](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/f6d6cf27-9c3a-42d2-bd8e-1bc24072c0f1)
+
+![tab1_상세정보](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/1731bdc1-faad-406c-8c5d-576494b65bdb)
+
 
 기존의 연락처 수정 및 삭제
 
-tab2 기본 화면
-![tab2](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/47cbb641-a4e3-4e37-90e0-d3f5b8d262bc)
 
-![tab2_2](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/784c4ba7-45fd-40d4-bcdc-1f07a9c28aa2)
+tab2 기본 화면
+![tab2](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/8de11e64-32b3-48c8-a5f1-1e63e0fb32fa)
+
+
+tab2 상세 정보 화면
+![tab2_2](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/ee4b930f-03c9-4758-919c-c1f6500f0ae4)
+
 
 tab3 기본 화면
+![Screenshot_20230705-164940_madcamp_1](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/ac44e10c-9d40-4c64-ad7f-4f1422c6636e)
+
+
+
 ![tab3](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/7bea4201-fadb-400b-b5a5-3a1a3a684b53)
 
-tab3 일정 추가 
-![tab3](https://github.com/justinyoonwk/madcamp_week1/assets/101591389/e5a54a71-74e8-4c9a-9fc5-3821ab4eec45)
+
