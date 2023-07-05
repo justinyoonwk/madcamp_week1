@@ -34,7 +34,6 @@ class MainActivity : BaseActivity() {
                 mViewPager?.currentItem = tab.position
             }
 
-
             override fun onTabUnselected(tab: TabLayout.Tab) {}
 
             override fun onTabReselected(tab: TabLayout.Tab) {}

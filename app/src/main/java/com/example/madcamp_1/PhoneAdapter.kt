@@ -24,7 +24,7 @@ import com.bumptech.glide.Glide
 import java.io.File
 
 
-public class PhoneAdapter(var itemList: ArrayList<Phone>): RecyclerView.Adapter<PhoneAdapter.BoardViewHolder>() {
+class PhoneAdapter(var itemList: ArrayList<Phone>): RecyclerView.Adapter<PhoneAdapter.BoardViewHolder>() {
 
 
     interface onItemClickListener {
@@ -78,7 +78,7 @@ public class PhoneAdapter(var itemList: ArrayList<Phone>): RecyclerView.Adapter<
                 .into(holder.photo)
         } else {
 
-            val resourceName = photo_item!!.substringAfterLast(".")
+            val resourceName = photo_item.substringAfterLast(".")
             val resourceId: Int = holder.itemView.context.resources.getIdentifier(resourceName, "drawable", holder.itemView.context.packageName)
             holder.photo.setImageResource(resourceId)
 
