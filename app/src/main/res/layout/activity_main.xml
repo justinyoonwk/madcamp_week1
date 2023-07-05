@@ -30,6 +30,7 @@
                 android:textStyle="bold"
                 android:gravity="center_horizontal"/>
 
+
         </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.tabs.TabLayout

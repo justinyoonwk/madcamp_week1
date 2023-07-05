@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_gravity="center_horizontal"
         android:id="@+id/imageView"
-        android:layout_width="264dp"
+        android:layout_width="match_parent"
         android:layout_height="264dp"
+        android:layout_marginTop="10dp"
 
          />
     <LinearLayout
@@ -49,7 +50,7 @@
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:src="@drawable/person"
+            android:src="@drawable/call"
             android:background="#00ff0000"/>
 
     <EditText
@@ -68,7 +69,7 @@
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:src="@drawable/person"
+            android:src="@drawable/check"
             android:background="#00ff0000"/>
     <EditText
         android:id="@+id/fav_Food"
@@ -86,7 +87,7 @@
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:src="@drawable/person"
+            android:src="@drawable/no"
             android:background="#00ff0000"/>
     <EditText
         android:id="@+id/dis_Food"
@@ -105,7 +106,7 @@
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:src="@drawable/person"
+            android:src="@drawable/home"
             android:background="#00ff0000"/>
     <EditText
         android:id="@+id/address"
@@ -113,6 +114,43 @@
         android:layout_height="wrap_content"
         android:ems="10"
         />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="15dp"
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:background="@drawable/buttom"
+                android:textColor="@color/black"
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수정"
+                android:layout_gravity="left"
+                />
+            <Button
+                android:background="@drawable/buttom"
+                android:textColor="@color/black"
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="삭제"
+                android:layout_gravity="center"
+
+                />
+
+            <Button
+                android:background="@drawable/buttom"
+                android:textColor="@color/black"
+                android:layout_marginLeft="8dp"
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="취소"
+                android:layout_gravity="right"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -6,15 +6,24 @@
       "fav_Food": "삽겹살 구이, 비빔냉면",
       "dis_Food": "햄버거, 치킨",
       "address": "대구 유성구 대학로 291",
-      "photo": "R.drawable.image8"
+      "photo": "R.drawable.pro1"
     },
+    {
+      "name": "장미영",
+      "phone_Number": "010-6543-2109",
+      "fav_Food": "떡국",
+      "dis_Food": "매운탕",
+      "address": "대전광역시 서구 둔산동 789번지",
+      "photo": "R.drawable.pro2"
+    },
+
     {
       "name": "김철수",
       "phone_Number": "010-0998-1619",
       "fav_Food": "맥적, 계란찜",
       "dis_Food": "떡볶이, 마라탕, 돈까스",
       "address": "충청남도 보령시 중앙로 612동",
-      "photo": "R.drawable.image2"
+      "photo": "R.drawable.pro3"
     },
     {
       "name": "김민희",
@@ -22,7 +31,7 @@
       "fav_Food": "떡볶이, 그릭요거트, 치즈",
       "dis_Food": "샐러드, 참치",
       "address": "서울시 강남구 삼성로 14 ",
-      "photo": "R.drawable.image3"
+      "photo": "R.drawable.pro4"
     },
     {
       "name": "박영희",
@@ -30,72 +39,121 @@
       "fav_Food": "초밥, 랍스터, 육회",
       "dis_Food": "제육볶음",
       "address": "서울특별시 동대문구 회기로 119(회기동)",
-      "photo": "R.drawable.image4"
+      "photo": "R.drawable.pro5"
+    },
+
+    {
+      "name": "이철호",
+      "phone_Number": "010-5555-8888",
+      "fav_Food": "짜장면",
+      "dis_Food": "해산물",
+      "address": "부산광역시 해운대구 송정동 789번지",
+      "photo": "R.drawable.pro6"
     },
     {
-      "name": "홍길동",
-      "phone_Number": "010-5528-1619",
-      "fav_Food": "삽겹살 구이, 비빔냉면",
-      "dis_Food": "햄버거, 치킨",
-      "address": "대구 유성구 대학로 291",
-      "photo": "R.drawable.image8"
+      "name": "박지영",
+      "phone_Number": "010-2468-1357",
+      "fav_Food": "초밥",
+      "dis_Food": "닭발",
+      "address": "대구광역시 중구 동성로 101번지",
+      "photo": "R.drawable.pro7"
     },
     {
-      "name": "김철수",
-      "phone_Number": "010-0998-1619",
-      "fav_Food": "맥적, 계란찜",
-      "dis_Food": "떡볶이, 마라탕, 돈까스",
-      "address": "충청남도 보령시 중앙로 612동",
-      "photo": "R.drawable.image2"
+      "name": "신민수",
+      "phone_Number": "010-7777-9999",
+      "fav_Food": "김치찌개",
+      "dis_Food": "오징어",
+      "address": "인천광역시 남동구 소래포구해안로 321번길",
+      "photo": "R.drawable.pro8"
     },
     {
-      "name": "김민희",
-      "phone_Number": "010-7714-1619",
-      "fav_Food": "떡볶이, 그릭요거트, 치즈",
-      "dis_Food": "샐러드, 참치",
-      "address": "서울시 강남구 삼성로 14 ",
-      "photo": "R.drawable.image3"
+      "name": "김성호",
+      "phone_Number": "010-2222-3333",
+      "fav_Food": "갈비",
+      "dis_Food": "오이",
+      "address": "광주광역시 서구 농성동 456번지",
+      "photo": "R.drawable.pro9"
     },
     {
-      "name": "박영희",
-      "phone_Number": "010-1928-1619",
-      "fav_Food": "초밥, 랍스터, 육회",
-      "dis_Food": "제육볶음",
-      "address": "서울특별시 동대문구 회기로 119(회기동)",
-      "photo": "R.drawable.image4"
+      "name": "이미경",
+      "phone_Number": "010-9822-2929",
+      "fav_Food": "비빔밥",
+      "dis_Food": "파스타",
+      "address": "울산광역시 남구 달동 789번지",
+      "photo": "R.drawable.pro10"
     },
     {
-      "name": "홍길동",
-      "phone_Number": "010-5528-1619",
-      "fav_Food": "삽겹살 구이, 비빔냉면",
-      "dis_Food": "햄버거, 치킨",
-      "address": "대구 유성구 대학로 291",
-      "photo": "R.drawable.image8"
+      "name": "박서연",
+      "phone_Number": "010-8586-3377",
+      "fav_Food": "피자",
+      "dis_Food": "조개",
+      "address": "제주특별자치도 제주시 중앙로 456번길",
+      "photo": "R.drawable.pro11"
     },
     {
-      "name": "김철수",
-      "phone_Number": "010-0998-1619",
-      "fav_Food": "맥적, 계란찜",
-      "dis_Food": "떡볶이, 마라탕, 돈까스",
-      "address": "충청남도 보령시 중앙로 612동",
-      "photo": "R.drawable.image2"
+      "name": "정민석",
+      "phone_Number": "010-7712-2452",
+      "fav_Food": "된장찌개",
+      "dis_Food": "곱창",
+      "address": "강원도 강릉시 중앙로 123번지",
+      "photo": "R.drawable.pro12"
     },
     {
-      "name": "김민희",
-      "phone_Number": "010-7714-1619",
-      "fav_Food": "떡볶이, 그릭요거트, 치즈",
-      "dis_Food": "샐러드, 참치",
-      "address": "서울시 강남구 삼성로 14 ",
-      "photo": "R.drawable.image3"
+      "name": "김민준",
+      "phone_Number": "010-1863-1122",
+      "fav_Food": "치킨",
+      "dis_Food": "순대",
+      "address": "경기도 성남시 분당구 정자동 789번지",
+      "photo": "R.drawable.pro13"
     },
     {
-      "name": "박영희",
-      "phone_Number": "010-1928-1619",
-      "fav_Food": "초밥, 랍스터, 육회",
-      "dis_Food": "제육볶음",
-      "address": "서울특별시 동대문구 회기로 119(회기동)",
-      "photo": "R.drawable.image4"
+      "name": "이지현",
+      "phone_Number": "010-3485-4246",
+      "fav_Food": "짬뽕",
+      "dis_Food": "양꼬치",
+      "address": "서울특별시 마포구 홍대입구역 101번출구",
+      "photo": "R.drawable.pro14"
+    },
+    {
+      "name": "이혜진",
+      "phone_Number": "010-3724-8121",
+      "fav_Food": "햄버거",
+      "dis_Food": "아이스티",
+      "address": "부산광역시 해운대구 해운대해수욕장 789번지",
+      "photo": "R.drawable.pro15"
+    },
+    {
+      "name": "이지원",
+      "phone_Number": "010-1111-4444",
+      "fav_Food": "짬뽕",
+      "dis_Food": "계란말이",
+      "address": "경기도 안양시 동안구 비산동 456번지",
+      "photo": "R.drawable.pro16"
+    },
+    {
+      "name": "박준영",
+      "phone_Number": "010-2277-2727",
+      "fav_Food": "쌀국수",
+      "dis_Food": "치킨",
+      "address": "인천광역시 남구 주안로 789번길",
+      "photo": "R.drawable.pro17"
+    },
+    {
+      "name": "이승현",
+      "phone_Number": "010-9111-1119",
+      "fav_Food": "초콜릿",
+      "dis_Food": "떡국",
+      "address": "광주광역시 북구 용봉동 321번지",
+      "photo": "R.drawable.pro18"
     }
+
+
+
+
+
+
+
+
   ]
 }
 
