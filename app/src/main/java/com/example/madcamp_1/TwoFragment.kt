@@ -101,7 +101,7 @@ class TwoFragment : Fragment(), OnMapReadyCallback {
                 val desiredHeight = (dialogWidth / 2) / aspectRatio
 
                 // Set the layout parameters of the ImageView and MapView
-                val imageLayoutParams = LinearLayout.LayoutParams(dialogWidth / 2, desiredHeight.toInt())
+                val imageLayoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, desiredHeight.toInt())
                 imageView?.layoutParams = imageLayoutParams  // Check if imageView is null before setting layout params
                 mapView?.layoutParams = imageLayoutParams  // Check if mapView is null before setting layout params
 
